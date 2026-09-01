@@ -3,19 +3,24 @@
 import { createServer } from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
-import { dirname, join, extname, normalize } from 'node:path';
+import { dirname, join, extname, normalize, sep } from 'node:path';
 
 const ROOT = dirname(fileURLToPath(import.meta.url));
 const PORT = process.env.PORT || 8080;
 const NOTION_TOKEN = process.env.NOTION_TOKEN;
 const CONTACT_DB_ID = process.env.NOTION_CONTACT_DB_ID;
 const SURVEY_DB_ID = process.env.NOTION_SURVEY_DB_ID;
+const MAX_BODY_BYTES = 100_000; // form submissions are tiny; this just blocks abuse
 
 const MIME = {
   '.html': 'text/html', '.css': 'text/css', '.js': 'application/javascript',
   '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg',
   '.jpeg': 'image/jpeg', '.ico': 'image/x-icon', '.json': 'application/json'
 };
+
+const GENDER_OPTIONS = ['Male', 'Female', 'Non-binary', 'Prefer not to say', 'Other'];
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const PHONE_RE = /^[0-9 +()-]{8,15}$/;
 
 async function notionCreatePage(dataSourceId, properties) {
   if (!NOTION_TOKEN || !dataSourceId) {
@@ -67,13 +72,28 @@ export function surveyProperties(body) {
   };
 }
 
+class HttpError extends Error {
+  constructor(status, message) { super(message); this.status = status; }
+}
+
 function readJsonBody(req) {
+  // ponytail: drains-then-rejects rather than hard-aborting the socket, so an oversized
+  // request still gets a clean 413 instead of a raw connection reset. Bounds memory (stops
+  // buffering past the cap) but not time/bandwidth on a very slow/huge upload — add a
+  // request timeout at the nginx layer if that ever becomes a real abuse vector.
   return new Promise((resolve, reject) => {
     let raw = '';
-    req.on('data', (chunk) => (raw += chunk));
+    let bytes = 0;
+    let tooLarge = false;
+    req.on('data', (chunk) => {
+      bytes += chunk.length;
+      if (bytes > MAX_BODY_BYTES) { tooLarge = true; return; }
+      raw += chunk;
+    });
     req.on('end', () => {
+      if (tooLarge) return reject(new HttpError(413, 'Request body too large'));
       try { resolve(raw ? JSON.parse(raw) : {}); }
-      catch { reject(new Error('Invalid JSON body')); }
+      catch { reject(new HttpError(400, 'Invalid JSON body')); }
     });
     req.on('error', reject);
   });
@@ -83,24 +103,42 @@ function missingFields(body, required) {
   return required.filter((f) => !String(body[f] ?? '').trim());
 }
 
+// Trust-boundary validation: HTML5 `required`/`pattern`/`type` attributes only guard the
+// browser form — anyone can POST directly to these endpoints, so re-check shape here too.
+function validationErrors(body, { phoneField, requireEmailFormat }) {
+  const errors = [];
+  if (body[phoneField] && !PHONE_RE.test(String(body[phoneField]))) errors.push(`${phoneField} looks invalid`);
+  if (requireEmailFormat && body.email && !EMAIL_RE.test(String(body.email))) errors.push('email looks invalid');
+  if (body.age !== undefined) {
+    const age = Number(body.age);
+    if (!Number.isInteger(age) || age < 1 || age > 120) errors.push('age must be a number between 1 and 120');
+  }
+  if (body.gender !== undefined && !GENDER_OPTIONS.includes(body.gender)) errors.push('gender is not a recognized option');
+  return errors;
+}
+
 async function handleApi(req, res, url) {
   const body = await readJsonBody(req);
 
   if (url.pathname === '/api/contact') {
     const missing = missingFields(body, ['name', 'phone']);
-    if (missing.length) return sendJson(res, 400, { ok: false, error: `Missing: ${missing.join(', ')}` });
+    if (missing.length) throw new HttpError(400, `Missing: ${missing.join(', ')}`);
+    const invalid = validationErrors(body, { phoneField: 'phone', requireEmailFormat: true });
+    if (invalid.length) throw new HttpError(400, invalid.join('; '));
     await notionCreatePage(CONTACT_DB_ID, contactProperties(body));
     return sendJson(res, 200, { ok: true });
   }
 
   if (url.pathname === '/api/survey') {
     const missing = missingFields(body, ['name', 'age', 'gender', 'city', 'mobile']);
-    if (missing.length) return sendJson(res, 400, { ok: false, error: `Missing: ${missing.join(', ')}` });
+    if (missing.length) throw new HttpError(400, `Missing: ${missing.join(', ')}`);
+    const invalid = validationErrors(body, { phoneField: 'mobile', requireEmailFormat: false });
+    if (invalid.length) throw new HttpError(400, invalid.join('; '));
     await notionCreatePage(SURVEY_DB_ID, surveyProperties(body));
     return sendJson(res, 200, { ok: true });
   }
 
-  sendJson(res, 404, { ok: false, error: 'Not found' });
+  throw new HttpError(404, 'Not found');
 }
 
 function sendJson(res, status, obj) {
@@ -108,10 +146,26 @@ function sendJson(res, status, obj) {
   res.end(JSON.stringify(obj));
 }
 
+// Allowlist, not blocklist: only these are the actual public site. Everything else in the
+// project root (server.js, package.json, test_server.mjs, *.md, .env, .git, …) is backend/
+// project plumbing that must never be reachable over HTTP — new public pages need adding here.
+const PUBLIC_FILES = new Set(['index.html', 'privacy.html', 'terms.html', 'app.js', 'styles.css', 'footer.css']);
+const PUBLIC_DIRS = ['assets/', 'survey/'];
+
+function isPublic(relPosix) {
+  return PUBLIC_FILES.has(relPosix) || PUBLIC_DIRS.some((dir) => relPosix.startsWith(dir));
+}
+
 async function serveStatic(req, res, pathname) {
-  let rel = pathname === '/' ? '/index.html' : pathname;
-  let filePath = normalize(join(ROOT, rel));
-  if (!filePath.startsWith(ROOT)) return sendJson(res, 403, { ok: false, error: 'Forbidden' });
+  const rel = pathname === '/' ? '/index.html' : decodeURIComponent(pathname);
+  const filePath = normalize(join(ROOT, rel));
+  // exact-match ROOT or ROOT+separator, not a string-prefix check — avoids the classic
+  // "/var/www/dad-report-evil" sibling-directory bypass of a naive startsWith(ROOT).
+  if (filePath !== ROOT && !filePath.startsWith(ROOT + sep)) {
+    return sendJson(res, 403, { ok: false, error: 'Forbidden' });
+  }
+  const relFromRoot = filePath.slice(ROOT.length + 1).split(sep).join('/');
+  if (!isPublic(relFromRoot)) return sendJson(res, 404, { ok: false, error: 'Not found' });
   try {
     const data = await readFile(filePath);
     res.writeHead(200, { 'Content-Type': MIME[extname(filePath)] || 'application/octet-stream' });
@@ -124,6 +178,7 @@ async function serveStatic(req, res, pathname) {
 
 export const server = createServer(async (req, res) => {
   const url = new URL(req.url, `http://${req.headers.host}`);
+  res.setHeader('X-Content-Type-Options', 'nosniff');
   try {
     if (req.method === 'POST' && url.pathname.startsWith('/api/')) {
       await handleApi(req, res, url);
@@ -131,8 +186,14 @@ export const server = createServer(async (req, res) => {
       await serveStatic(req, res, url.pathname);
     }
   } catch (err) {
-    console.error(err);
-    sendJson(res, 500, { ok: false, error: err.message });
+    if (err instanceof HttpError) {
+      sendJson(res, err.status, { ok: false, error: err.message });
+    } else {
+      // Never forward raw error text (Notion errors can include internal property/schema
+      // names) to the client — log full detail server-side, return a generic message.
+      console.error(err);
+      sendJson(res, 500, { ok: false, error: 'Something went wrong. Please try again.' });
+    }
   }
 });
 
