@@ -1,0 +1,21 @@
+.site-footer .footer-top {
+  grid-template-columns: minmax(280px, 1fr) minmax(280px, .65fr);
+  justify-content: space-between;
+}
+
+.site-footer .footer-follow {
+  justify-self: end;
+  width: min(100%, 360px);
+}
+
+@media (max-width: 650px) {
+  .site-footer .footer-top {
+    grid-template-columns: 1fr;
+  }
+
+  .site-footer .footer-follow {
+    grid-column: auto;
+    justify-self: start;
+    width: 100%;
+  }
+}

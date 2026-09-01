@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Share your healthcare experience and help shape the first phase of Doctors At Door.">
+  <meta name="theme-color" content="#24133f">
+  <title>DAD Healthcare Experience Survey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="survey.css">
+</head>
+<body class="survey-page survey-redesign">
+  <a class="skip-link" href="#survey-content">Skip to survey</a>
+  <header class="site-header legal-header survey-header">
+    <a class="brand" href="../index.html" aria-label="Return to DAD Reports"><img src="../assets/dad-report-logo.png" alt=""><span><strong>DAD Reports</strong><small>Doctors At Door</small></span></a>
+    <a class="button button-primary" href="../index.html">Back to website <svg class="icon"><use href="../assets/icons.svg#arrow-right"/></svg></a>
+  </header>
+
+  <main class="survey-layout">
+    <aside class="survey-intro">
+      <div class="survey-intro-copy">
+        <span class="eyebrow">DAD Community Research · 5–7 minutes</span>
+        <h1>Your healthcare experience can <em>change the system.</em></h1>
+        <p>Tell us what care feels like today—from waiting and travel to records, referrals, and family health. Your experience will directly shape the DAD Complete ecosystem.</p>
+      </div>
+      <div class="survey-trust">
+        <span><i><svg class="icon"><use href="../assets/icons.svg#check"/></svg></i>Your answers are used for product research</span>
+        <span><i><svg class="icon"><use href="../assets/icons.svg#shield"/></svg></i>No medical diagnosis is requested</span>
+        <span><i><svg class="icon"><use href="../assets/icons.svg#records"/></svg></i>You can review answers before submitting</span>
+      </div>
+      <div class="survey-brand-card"><img src="../assets/dad-report-logo.png" alt="" width="48" height="48"><span><small>PHASE 1 RESEARCH</small><strong>Help build care around real experiences.</strong></span></div>
+    </aside>
+
+    <section class="survey-content" id="survey-content">
+      <div class="survey-topline"><span id="survey-status">Step 1 of 2 · About you</span><div class="survey-progress" role="progressbar" aria-label="Survey progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="8"><i id="survey-progress-bar"></i></div></div>
+      <form id="survey-form" class="survey-form">
+        <fieldset id="details-step" class="survey-step active">
+          <legend>First, tell us a little about you.</legend>
+          <p class="step-copy">This helps us understand how healthcare needs change across ages, families, and cities.</p>
+          <div class="details-grid">
+            <label>Name <em>*</em><input name="name" required autocomplete="name" placeholder="Your full name"></label>
+            <label>Age <em>*</em><input name="age" type="number" min="1" max="120" required placeholder="Your age"></label>
+            <label class="full-field">Gender <em>*</em><span class="options"><label><input type="radio" name="gender" value="Male" required> Male</label><label><input type="radio" name="gender" value="Female"> Female</label><label><input type="radio" name="gender" value="Non-binary"> Non-binary</label><label><input type="radio" name="gender" value="Prefer not to say"> Prefer not to say</label><label><input type="radio" name="gender" value="Other"> Other</label></span></label>
+            <label>City <em>*</em><input name="city" required autocomplete="address-level2" placeholder="Where do you live?"></label>
+            <label>Mobile Number <em>*</em><input name="mobile" type="tel" required autocomplete="tel" pattern="[0-9 +()-]{8,15}" placeholder="WhatsApp number"></label>
+          </div>
+          <button class="button button-primary next-button" type="button">Start the experience survey <svg class="icon"><use href="../assets/icons.svg#arrow-right"/></svg></button>
+        </fieldset>
+
+        <fieldset id="questions-step" class="survey-step"><legend>Tell us what healthcare feels like today.</legend><p class="step-copy">There are no right answers. Choose what most closely matches your real experience.</p><div id="question-list"></div><div class="survey-actions"><button class="button button-quiet back-button" type="button">Back</button><button class="button button-primary" type="submit">Submit my experience <svg class="icon"><use href="../assets/icons.svg#arrow-right"/></svg></button></div></fieldset>
+
+        <div id="survey-success" class="survey-success" hidden><span><svg class="icon"><use href="../assets/icons.svg#check"/></svg></span><h2>Thank you for helping shape DAD.</h2><p>Your experience is now part of the thinking behind a more connected, coordinated, and human healthcare ecosystem.</p><a class="button button-primary" href="../index.html">Explore DAD Reports <svg class="icon"><use href="../assets/icons.svg#arrow-right"/></svg></a></div>
+      </form>
+    </section>
+  </main>
+  <script src="survey.js"></script>
+</body>
+</html>
