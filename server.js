@@ -157,7 +157,8 @@ function isPublic(relPosix) {
 }
 
 async function serveStatic(req, res, pathname) {
-  const rel = pathname === '/' ? '/index.html' : decodeURIComponent(pathname);
+  const pages = { '/': '/index.html', '/privacy': '/privacy.html', '/terms': '/terms.html', '/survey': '/survey/index.html' };
+  const rel = pages[pathname] || decodeURIComponent(pathname);
   const filePath = normalize(join(ROOT, rel));
   // exact-match ROOT or ROOT+separator, not a string-prefix check — avoids the classic
   // "/var/www/dad-report-evil" sibling-directory bypass of a naive startsWith(ROOT).
@@ -180,6 +181,11 @@ export const server = createServer(async (req, res) => {
   const url = new URL(req.url, `http://${req.headers.host}`);
   res.setHeader('X-Content-Type-Options', 'nosniff');
   try {
+    const redirects = { '/index.html': '/', '/privacy.html': '/privacy', '/terms.html': '/terms', '/survey/index.html': '/survey', '/survey/': '/survey', '/privacy/': '/privacy', '/terms/': '/terms' };
+    if ((req.method === 'GET' || req.method === 'HEAD') && redirects[url.pathname]) {
+      res.writeHead(301, { Location: redirects[url.pathname] + url.search });
+      return res.end();
+    }
     if (req.method === 'POST' && url.pathname.startsWith('/api/')) {
       await handleApi(req, res, url);
     } else {

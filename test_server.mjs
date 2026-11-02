@@ -154,5 +154,19 @@ for (const path of ['/server.js', '/package.json', '/test_server.mjs', '/NOTION_
 assert.equal(contactProperties({ name: 'X' }).Name.title[0].text.content, 'X');
 assert.equal(surveyProperties({ gender: 'Female' }).Gender.select.name, 'Female');
 
+// Clean routes and permanent legacy redirects, including query strings.
+for (const path of ['/', '/privacy', '/terms', '/survey']) {
+  const result = await get(path);
+  assert.equal(result.status, 200, path);
+  assert.match(result.text, /<!doctype html>/i);
+}
+for (const [from, to] of Object.entries({ '/index.html': '/', '/privacy.html': '/privacy', '/terms.html': '/terms', '/survey/index.html': '/survey', '/survey/': '/survey', '/privacy/': '/privacy', '/terms/': '/terms' })) {
+  const response = await fetch(base + from + '?source=test', { redirect: 'manual' });
+  assert.equal(response.status, 301);
+  assert.equal(response.headers.get('location'), to + '?source=test');
+}
+assert.equal((await get('/survey/survey.css')).status, 200);
+assert.match((await get('/survey')).text, /src="\/survey\/survey.js"/);
+assert.equal((await get('/unknown-page')).status, 404);
 server.close();
 console.log('All server checks passed.');

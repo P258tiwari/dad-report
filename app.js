@@ -55,22 +55,28 @@ document.querySelectorAll('.faq-item button').forEach(button => button.addEventL
 }));
 
 const showcaseData = {
-  history: ['DAD REPORTS', 'Your health,', 'made simple.', '92', 'Health overview'],
-  summary: ['AI VALUE', 'Summary report,', 'made clearer.', '90s', 'Key findings'],
-  diagnostics: ['APPOINTMENT', 'Book a visit,', 'in under a minute.', '3', 'Simple steps']
+  history: { src: 'assets/app-screens/medical-reports.png', alt: 'DAD Reports app showing Your Medical Reports in chronological order' },
+  summary: { src: 'assets/app-screens/ai-summary.png', alt: 'DAD Reports AI video summary overview with report selection, narration and sharing steps' },
+  diagnostics: { src: 'assets/app-screens/completed-appointment.png', alt: 'DAD Reports diagnostic appointments showing a completed appointment and View report button' }
 };
 
-document.querySelectorAll('[data-showcase]').forEach(button => button.addEventListener('click', () => {
-  document.querySelectorAll('[data-showcase]').forEach(tab => tab.classList.remove('active'));
-  button.classList.add('active');
+document.querySelectorAll('[data-showcase]').forEach(button => {
+  const activate = () => {
   const data = showcaseData[button.dataset.showcase];
-  const screen = document.querySelector('.showcase-screen');
-  if (!screen || !data) return;
-  screen.querySelector('.tag').textContent = data[0];
-  screen.querySelector('h3').innerHTML = `${data[1]}<br><em>${data[2]}</em>`;
-  screen.querySelector('.metric-ring strong').textContent = data[3];
-  screen.querySelector('.metric-ring small').textContent = data[4];
-}));
+  const screenshot = document.querySelector('.showcase-screenshot');
+  if (!screenshot || !data) return;
+  document.querySelectorAll('[data-showcase]').forEach(tab => {
+    const active = tab === button;
+    tab.classList.toggle('active', active);
+    tab.setAttribute('aria-pressed', String(active));
+  });
+  screenshot.src = data.src;
+  screenshot.alt = data.alt;
+  };
+  button.addEventListener('mouseenter', activate);
+  button.addEventListener('focus', activate);
+  button.addEventListener('click', activate);
+});
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const reveals = document.querySelectorAll('.reveal');
