@@ -3756,3 +3756,56 @@ h2 {
     box-shadow: inset 3px 0 0 var(--purple-2);
   }
 }
+
+/* Hero: four "Built for" points under the intro text. */
+
+.hero-points {
+  display: grid;
+  gap: 10px;
+  margin: 26px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hero-points li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+.hero-points .icon {
+  width: 22px;
+  height: 22px;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--pink-soft);
+  color: var(--purple-2);
+  stroke-width: 2.4;
+}
+
+@media (max-width: 1100px) {
+  .hero-points {
+    width: fit-content;
+    max-width: 100%;
+    margin-inline: auto;
+    text-align: left;
+  }
+}
+
+@media (max-width: 650px) {
+  .hero-points li {
+    align-items: flex-start;
+    font-size: 0.9rem;
+  }
+}
+
+/* Large screens: cap the headline so "One organized platform." stays inside its column, clear of the phone. */
+@media (min-width: 1251px) {
+  .hero h1 {
+    font-size: clamp(2.75rem, 4.45vw, 3.9rem);
+  }
+}
