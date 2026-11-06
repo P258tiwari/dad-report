@@ -242,6 +242,16 @@ em {
   height: 2px;
   margin: 5px;
   background: #fff;
+  transition: transform 0.25s;
+}
+
+/* Open menu: the two lines cross into a close (X) icon. */
+.menu-button[aria-expanded='true'] span:first-child {
+  transform: translateY(3.5px) rotate(45deg);
+}
+
+.menu-button[aria-expanded='true'] span:last-child {
+  transform: translateY(-3.5px) rotate(-45deg);
 }
 
 .eyebrow {
@@ -3536,4 +3546,213 @@ h2 {
 .hero-link .icon {
   width: 18px;
   height: 18px;
+}
+
+/* Mobile polish: hero photo, highlights, ecosystem, FAQ, and footer links (phones only). */
+
+.pulse {
+  margin-right: 6px;
+}
+
+@media (max-width: 650px) {
+  /* Hero: photo on top, phone below it, overlapping only the lower part so the family stays visible. */
+  .hero-stage {
+    height: auto;
+  }
+
+  .hero-photo {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-position: 58% 40%;
+    border-radius: 26px;
+  }
+
+  .hero-stage .device-main {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    width: clamp(200px, 52vw, 250px);
+    margin: -80px auto 0;
+    transform: none;
+  }
+
+  /* Soft, uneven glow instead of a hard-edged circle. */
+  .ambient-orb {
+    width: 100%;
+    height: 380px;
+    top: 64%;
+    border-radius: 46% 54% 62% 38% / 52% 44% 56% 48%;
+    background: radial-gradient(
+      ellipse at 50% 50%,
+      rgba(215, 143, 189, 0.8),
+      rgba(215, 143, 189, 0.35) 50%,
+      transparent 72%
+    );
+    filter: blur(24px);
+  }
+
+  /* Highlights: one row per item, so each heading stays on one line. */
+  .impact {
+    grid-template-columns: 1fr;
+  }
+
+  .impact > div {
+    padding: 16px 18px;
+  }
+
+  .impact > div + div {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .impact .impact-copy strong {
+    font-size: 1rem;
+    white-space: nowrap;
+  }
+
+  .impact .impact-copy small {
+    margin-top: 2px;
+    font-size: 0.78rem;
+  }
+
+  /* Ecosystem: same centered chips, smaller text and spacing so more fit per line. */
+  .ecosystem {
+    padding: 24px 16px;
+  }
+
+  .nodes {
+    gap: 6px;
+  }
+
+  .nodes span {
+    padding: 7px 10px;
+    font-size: 0.64rem;
+  }
+
+  .nodes b {
+    margin-left: 3px;
+  }
+
+  .ecosystem > small {
+    font-size: 0.72rem;
+  }
+
+  /* FAQ: smaller questions with comfortable line height. */
+  .faq-item h3 {
+    font-size: 1.05rem;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+  }
+
+  .faq-item button {
+    gap: 16px;
+    padding: 18px 0;
+  }
+
+  .faq-item button i {
+    flex-basis: 30px;
+    height: 30px;
+  }
+
+  .faq-item > div > p {
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  .faq-item.open > div > p {
+    padding: 0 0 20px;
+  }
+
+  /* Footer: links grouped in their own section, two per row. */
+  .footer-bottom {
+    gap: 18px;
+  }
+
+  .footer-bottom nav {
+    order: -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 18px;
+  }
+
+  .footer-bottom nav::before {
+    content: 'Legal and help';
+    grid-column: 1 / -1;
+    margin-bottom: 4px;
+    color: var(--pink);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .footer-bottom nav a {
+    display: block;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 0.85rem;
+  }
+
+  .footer-bottom nav a:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+
+  .footer-bottom > span {
+    font-size: 0.72rem;
+  }
+}
+
+/* Menu: the link for the section in view is highlighted (app.js sets aria-current). */
+
+.main-nav {
+  gap: 4px;
+}
+
+.main-nav a {
+  padding: 8px 14px;
+  border-radius: 999px;
+  transition:
+    color 0.2s,
+    background 0.2s;
+}
+
+.main-nav a:hover {
+  background: rgba(111, 47, 114, 0.06);
+}
+
+.main-nav a[aria-current] {
+  background: var(--pink-soft);
+  color: var(--purple);
+  box-shadow: inset 0 0 0 1px rgba(111, 47, 114, 0.14);
+}
+
+@media (max-width: 1100px) {
+  .main-nav {
+    gap: 2px;
+  }
+
+  .main-nav a {
+    padding: 7px 10px;
+  }
+}
+
+@media (max-width: 900px) {
+  .main-nav {
+    gap: 4px;
+    padding: 14px;
+  }
+
+  .main-nav a {
+    align-self: stretch;
+    padding: 12px 16px;
+    border-radius: 12px;
+  }
+
+  .main-nav a[aria-current] {
+    box-shadow: inset 3px 0 0 var(--purple-2);
+  }
 }

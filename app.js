@@ -2,7 +2,23 @@ const header = document.querySelector('[data-header]');
 const menuButton = document.querySelector('.menu-button');
 const nav = document.querySelector('.main-nav');
 
-const updateHeader = () => header?.classList.toggle('scrolled', window.scrollY > 24);
+// Highlight the menu link of the last section whose top has passed 40% of the screen height.
+const navLinks = [...document.querySelectorAll('.main-nav a[href^="#"]')];
+const navSections = navLinks.map((link) => document.querySelector(link.hash));
+const updateActiveLink = () => {
+  let current = -1;
+  navSections.forEach((section, i) => {
+    if (section && section.getBoundingClientRect().top <= window.innerHeight * 0.4) current = i;
+  });
+  navLinks.forEach((link, i) =>
+    i === current ? link.setAttribute('aria-current', 'true') : link.removeAttribute('aria-current'),
+  );
+};
+
+const updateHeader = () => {
+  header?.classList.toggle('scrolled', window.scrollY > 24);
+  updateActiveLink();
+};
 updateHeader();
 window.addEventListener('scroll', updateHeader, { passive: true });
 
