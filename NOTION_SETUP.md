@@ -1,6 +1,6 @@
 # Wiring the two forms to Notion
 
-Both forms (early-access on the homepage, and the survey) now POST to a
+Both forms (the contact form on the homepage, and the survey) now POST to a
 local Node server (`server.js`) which writes each submission into Notion
 as a new database row. Do this once:
 
@@ -14,13 +14,14 @@ as a new database row. Do this once:
 
 Create two databases in Notion (as full-page databases), with these columns:
 
-**Contact / Early Access database**
+**Contact database**
 | Property | Type |
 |---|---|
 | Name | Title |
 | Phone | Phone |
 | Email | Email |
 | City | Text |
+| Message | Text |
 | Submitted | Date |
 
 **Survey database**

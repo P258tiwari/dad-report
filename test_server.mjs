@@ -13,7 +13,12 @@ const realFetch = globalThis.fetch;
 globalThis.fetch = async (url, opts) => {
   if (String(url).includes('api.notion.com')) {
     capturedBody = JSON.parse(opts.body);
-    if (notionShouldFail) return { ok: false, status: 400, json: async () => ({ message: 'body.properties.Gender.select.name should be defined' }) };
+    if (notionShouldFail)
+      return {
+        ok: false,
+        status: 400,
+        json: async () => ({ message: 'body.properties.Gender.select.name should be defined' }),
+      };
     return { ok: true, json: async () => ({ id: 'fake-page-id' }) };
   }
   return realFetch(url, opts);
@@ -25,7 +30,10 @@ server.listen(0);
 const base = `http://localhost:${server.address().port}`;
 
 async function post(path, body, raw) {
-  const res = await fetch(base + path, { method: 'POST', body: raw !== undefined ? raw : JSON.stringify(body) });
+  const res = await fetch(base + path, {
+    method: 'POST',
+    body: raw !== undefined ? raw : JSON.stringify(body),
+  });
   return { status: res.status, json: await res.json() };
 }
 async function get(path) {
@@ -38,21 +46,33 @@ async function get(path) {
   const { status, json } = await post('/api/contact', { phone: '9990001111' });
   assert.equal(status, 400);
   assert.equal(json.ok, false);
+  assert.equal(json.error, 'Please fill in: full name.');
 }
 
 // contact: valid submission -> 200, correct Notion payload
 {
-  const { status, json } = await post('/api/contact', { name: 'Ada', phone: '9990001111', email: 'a@b.com', city: 'Pune' });
+  const { status, json } = await post('/api/contact', {
+    name: 'Ada',
+    phone: '9990001111',
+    email: 'a@b.com',
+    city: 'Pune',
+    message: 'Hello',
+  });
   assert.equal(status, 200);
   assert.equal(json.ok, true);
   assert.equal(capturedBody.parent.data_source_id, 'contact-db');
   assert.equal(capturedBody.properties.Name.title[0].text.content, 'Ada');
+  assert.equal(capturedBody.properties.Message.rich_text[0].text.content, 'Hello');
 }
 
 // contact: malformed email -> 400, never reaches Notion
 {
   capturedBody = null;
-  const { status, json } = await post('/api/contact', { name: 'Ada', phone: '9990001111', email: 'not-an-email' });
+  const { status, json } = await post('/api/contact', {
+    name: 'Ada',
+    phone: '9990001111',
+    email: 'not-an-email',
+  });
   assert.equal(status, 400);
   assert.equal(json.ok, false);
   assert.equal(capturedBody, null);
@@ -67,8 +87,13 @@ async function get(path) {
 // survey: valid submission -> 200, answers folded into one text field
 {
   const { status, json } = await post('/api/survey', {
-    name: 'Bo', age: 30, gender: 'Male', city: 'Delhi', mobile: '9998887777',
-    question_1: 'Yes', question_12: ['A', 'B']
+    name: 'Bo',
+    age: 30,
+    gender: 'Male',
+    city: 'Delhi',
+    mobile: '9998887777',
+    question_1: 'Yes',
+    question_12: ['A', 'B'],
   });
   assert.equal(status, 200);
   assert.equal(json.ok, true);
@@ -79,13 +104,25 @@ async function get(path) {
 
 // survey: out-of-range age -> 400
 {
-  const { status } = await post('/api/survey', { name: 'Bo', age: 999, gender: 'Male', city: 'Delhi', mobile: '9998887777' });
+  const { status } = await post('/api/survey', {
+    name: 'Bo',
+    age: 999,
+    gender: 'Male',
+    city: 'Delhi',
+    mobile: '9998887777',
+  });
   assert.equal(status, 400);
 }
 
 // survey: gender not in the allowed set -> 400
 {
-  const { status } = await post('/api/survey', { name: 'Bo', age: 30, gender: 'Robot', city: 'Delhi', mobile: '9998887777' });
+  const { status } = await post('/api/survey', {
+    name: 'Bo',
+    age: 30,
+    gender: 'Robot',
+    city: 'Delhi',
+    mobile: '9998887777',
+  });
   assert.equal(status, 400);
 }
 
@@ -160,7 +197,15 @@ for (const path of ['/', '/privacy', '/terms', '/survey']) {
   assert.equal(result.status, 200, path);
   assert.match(result.text, /<!doctype html>/i);
 }
-for (const [from, to] of Object.entries({ '/index.html': '/', '/privacy.html': '/privacy', '/terms.html': '/terms', '/survey/index.html': '/survey', '/survey/': '/survey', '/privacy/': '/privacy', '/terms/': '/terms' })) {
+for (const [from, to] of Object.entries({
+  '/index.html': '/',
+  '/privacy.html': '/privacy',
+  '/terms.html': '/terms',
+  '/survey/index.html': '/survey',
+  '/survey/': '/survey',
+  '/privacy/': '/privacy',
+  '/terms/': '/terms',
+})) {
   const response = await fetch(base + from + '?source=test', { redirect: 'manual' });
   assert.equal(response.status, 301);
   assert.equal(response.headers.get('location'), to + '?source=test');

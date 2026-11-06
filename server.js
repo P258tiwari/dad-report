@@ -13,9 +13,15 @@ const SURVEY_DB_ID = process.env.NOTION_SURVEY_DB_ID;
 const MAX_BODY_BYTES = 100_000; // form submissions are tiny; this just blocks abuse
 
 const MIME = {
-  '.html': 'text/html', '.css': 'text/css', '.js': 'application/javascript',
-  '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg',
-  '.jpeg': 'image/jpeg', '.ico': 'image/x-icon', '.json': 'application/json'
+  '.html': 'text/html',
+  '.css': 'text/css',
+  '.js': 'application/javascript',
+  '.svg': 'image/svg+xml',
+  '.png': 'image/png',
+  '.jpg': 'image/jpeg',
+  '.jpeg': 'image/jpeg',
+  '.ico': 'image/x-icon',
+  '.json': 'application/json',
 };
 
 const GENDER_OPTIONS = ['Male', 'Female', 'Non-binary', 'Prefer not to say', 'Other'];
@@ -24,16 +30,18 @@ const PHONE_RE = /^[0-9 +()-]{8,15}$/;
 
 async function notionCreatePage(dataSourceId, properties) {
   if (!NOTION_TOKEN || !dataSourceId) {
-    throw new Error('Notion is not configured — set NOTION_TOKEN and the database id env vars (see .env.example).');
+    throw new Error(
+      'Notion is not configured — set NOTION_TOKEN and the database id env vars (see .env.example).',
+    );
   }
   const res = await fetch('https://api.notion.com/v1/pages', {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${NOTION_TOKEN}`,
       'Notion-Version': '2025-09-03', // both DBs are Notion's newer multi-data-source type
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ parent: { type: 'data_source_id', data_source_id: dataSourceId }, properties })
+    body: JSON.stringify({ parent: { type: 'data_source_id', data_source_id: dataSourceId }, properties }),
   });
   const data = await res.json();
   if (!res.ok) throw new Error(data.message || `Notion API error ${res.status}`);
@@ -49,7 +57,8 @@ export function contactProperties(body) {
     Phone: { phone_number: body.phone || null },
     Email: { email: body.email || null },
     City: text(body.city),
-    Submitted: { date: { start: new Date().toISOString() } }
+    Message: text(body.message),
+    Submitted: { date: { start: new Date().toISOString() } },
   };
 }
 
@@ -68,12 +77,15 @@ export function surveyProperties(body) {
     City: text(body.city),
     Mobile: { phone_number: body.mobile || null },
     Answers: text(answers),
-    Submitted: { date: { start: new Date().toISOString() } }
+    Submitted: { date: { start: new Date().toISOString() } },
   };
 }
 
 class HttpError extends Error {
-  constructor(status, message) { super(message); this.status = status; }
+  constructor(status, message) {
+    super(message);
+    this.status = status;
+  }
 }
 
 function readJsonBody(req) {
@@ -87,33 +99,44 @@ function readJsonBody(req) {
     let tooLarge = false;
     req.on('data', (chunk) => {
       bytes += chunk.length;
-      if (bytes > MAX_BODY_BYTES) { tooLarge = true; return; }
+      if (bytes > MAX_BODY_BYTES) {
+        tooLarge = true;
+        return;
+      }
       raw += chunk;
     });
     req.on('end', () => {
-      if (tooLarge) return reject(new HttpError(413, 'Request body too large'));
-      try { resolve(raw ? JSON.parse(raw) : {}); }
-      catch { reject(new HttpError(400, 'Invalid JSON body')); }
+      if (tooLarge) return reject(new HttpError(413, 'Your message is too long.'));
+      try {
+        resolve(raw ? JSON.parse(raw) : {});
+      } catch {
+        reject(new HttpError(400, 'Something went wrong. Please try again.'));
+      }
     });
     req.on('error', reject);
   });
 }
 
+const FIELD_LABELS = { name: 'full name', phone: 'phone number', mobile: 'mobile number', age: 'age', gender: 'gender', city: 'city' };
+
 function missingFields(body, required) {
-  return required.filter((f) => !String(body[f] ?? '').trim());
+  return required.filter((f) => !String(body[f] ?? '').trim()).map((f) => FIELD_LABELS[f] || f);
 }
 
 // Trust-boundary validation: HTML5 `required`/`pattern`/`type` attributes only guard the
 // browser form — anyone can POST directly to these endpoints, so re-check shape here too.
 function validationErrors(body, { phoneField, requireEmailFormat }) {
   const errors = [];
-  if (body[phoneField] && !PHONE_RE.test(String(body[phoneField]))) errors.push(`${phoneField} looks invalid`);
-  if (requireEmailFormat && body.email && !EMAIL_RE.test(String(body.email))) errors.push('email looks invalid');
+  if (body[phoneField] && !PHONE_RE.test(String(body[phoneField])))
+    errors.push('Please enter a valid phone number.');
+  if (requireEmailFormat && body.email && !EMAIL_RE.test(String(body.email)))
+    errors.push('Please enter a valid email address.');
   if (body.age !== undefined) {
     const age = Number(body.age);
-    if (!Number.isInteger(age) || age < 1 || age > 120) errors.push('age must be a number between 1 and 120');
+    if (!Number.isInteger(age) || age < 1 || age > 120) errors.push('Please enter an age between 1 and 120.');
   }
-  if (body.gender !== undefined && !GENDER_OPTIONS.includes(body.gender)) errors.push('gender is not a recognized option');
+  if (body.gender !== undefined && !GENDER_OPTIONS.includes(body.gender))
+    errors.push('Please choose a gender from the list.');
   return errors;
 }
 
@@ -122,18 +145,18 @@ async function handleApi(req, res, url) {
 
   if (url.pathname === '/api/contact') {
     const missing = missingFields(body, ['name', 'phone']);
-    if (missing.length) throw new HttpError(400, `Missing: ${missing.join(', ')}`);
+    if (missing.length) throw new HttpError(400, `Please fill in: ${missing.join(', ')}.`);
     const invalid = validationErrors(body, { phoneField: 'phone', requireEmailFormat: true });
-    if (invalid.length) throw new HttpError(400, invalid.join('; '));
+    if (invalid.length) throw new HttpError(400, invalid.join(' '));
     await notionCreatePage(CONTACT_DB_ID, contactProperties(body));
     return sendJson(res, 200, { ok: true });
   }
 
   if (url.pathname === '/api/survey') {
     const missing = missingFields(body, ['name', 'age', 'gender', 'city', 'mobile']);
-    if (missing.length) throw new HttpError(400, `Missing: ${missing.join(', ')}`);
+    if (missing.length) throw new HttpError(400, `Please fill in: ${missing.join(', ')}.`);
     const invalid = validationErrors(body, { phoneField: 'mobile', requireEmailFormat: false });
-    if (invalid.length) throw new HttpError(400, invalid.join('; '));
+    if (invalid.length) throw new HttpError(400, invalid.join(' '));
     await notionCreatePage(SURVEY_DB_ID, surveyProperties(body));
     return sendJson(res, 200, { ok: true });
   }
@@ -149,7 +172,7 @@ function sendJson(res, status, obj) {
 // Allowlist, not blocklist: only these are the actual public site. Everything else in the
 // project root (server.js, package.json, test_server.mjs, *.md, .env, .git, …) is backend/
 // project plumbing that must never be reachable over HTTP — new public pages need adding here.
-const PUBLIC_FILES = new Set(['index.html', 'privacy.html', 'terms.html', 'app.js', 'styles.css', 'footer.css']);
+const PUBLIC_FILES = new Set(['index.html', 'privacy.html', 'terms.html', 'app.js', 'styles.css']);
 const PUBLIC_DIRS = ['assets/', 'survey/'];
 
 function isPublic(relPosix) {
@@ -157,7 +180,12 @@ function isPublic(relPosix) {
 }
 
 async function serveStatic(req, res, pathname) {
-  const pages = { '/': '/index.html', '/privacy': '/privacy.html', '/terms': '/terms.html', '/survey': '/survey/index.html' };
+  const pages = {
+    '/': '/index.html',
+    '/privacy': '/privacy.html',
+    '/terms': '/terms.html',
+    '/survey': '/survey/index.html',
+  };
   const rel = pages[pathname] || decodeURIComponent(pathname);
   const filePath = normalize(join(ROOT, rel));
   // exact-match ROOT or ROOT+separator, not a string-prefix check — avoids the classic
@@ -165,7 +193,10 @@ async function serveStatic(req, res, pathname) {
   if (filePath !== ROOT && !filePath.startsWith(ROOT + sep)) {
     return sendJson(res, 403, { ok: false, error: 'Forbidden' });
   }
-  const relFromRoot = filePath.slice(ROOT.length + 1).split(sep).join('/');
+  const relFromRoot = filePath
+    .slice(ROOT.length + 1)
+    .split(sep)
+    .join('/');
   if (!isPublic(relFromRoot)) return sendJson(res, 404, { ok: false, error: 'Not found' });
   try {
     const data = await readFile(filePath);
@@ -181,7 +212,15 @@ export const server = createServer(async (req, res) => {
   const url = new URL(req.url, `http://${req.headers.host}`);
   res.setHeader('X-Content-Type-Options', 'nosniff');
   try {
-    const redirects = { '/index.html': '/', '/privacy.html': '/privacy', '/terms.html': '/terms', '/survey/index.html': '/survey', '/survey/': '/survey', '/privacy/': '/privacy', '/terms/': '/terms' };
+    const redirects = {
+      '/index.html': '/',
+      '/privacy.html': '/privacy',
+      '/terms.html': '/terms',
+      '/survey/index.html': '/survey',
+      '/survey/': '/survey',
+      '/privacy/': '/privacy',
+      '/terms/': '/terms',
+    };
     if ((req.method === 'GET' || req.method === 'HEAD') && redirects[url.pathname]) {
       res.writeHead(301, { Location: redirects[url.pathname] + url.search });
       return res.end();
@@ -204,5 +243,5 @@ export const server = createServer(async (req, res) => {
 });
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  server.listen(PORT, () => console.log(`DAD Reports site running at http://localhost:${PORT}`));
+  server.listen(PORT, () => console.log(`DAD Report site running at http://localhost:${PORT}`));
 }

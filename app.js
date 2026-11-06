@@ -6,88 +6,80 @@ const updateHeader = () => header?.classList.toggle('scrolled', window.scrollY >
 updateHeader();
 window.addEventListener('scroll', updateHeader, { passive: true });
 
-menuButton?.addEventListener('click', () => {
-  const open = nav.classList.toggle('open');
+const setMenu = (open) => {
+  nav?.classList.toggle('open', open);
   document.body.classList.toggle('menu-open', open);
-  menuButton.setAttribute('aria-expanded', String(open));
-  menuButton.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-});
-
-nav?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
-  nav.classList.remove('open');
-  document.body.classList.remove('menu-open');
-  menuButton?.setAttribute('aria-expanded', 'false');
-  menuButton?.setAttribute('aria-label', 'Open menu');
-}));
-
-document.querySelectorAll('form[data-success]').forEach(form => form.addEventListener('submit', async event => {
-  event.preventDefault();
-  const message = form.querySelector('.form-message');
-  const submitButton = form.querySelector('button[type="submit"]');
-  const data = Object.fromEntries(new FormData(form));
-  submitButton?.setAttribute('disabled', 'true');
-  try {
-    const res = await fetch('/api/contact', { method: 'POST', body: JSON.stringify(data) });
-    const result = await res.json();
-    if (!res.ok || !result.ok) throw new Error(result.error || 'Submission failed');
-    if (message) { message.textContent = form.dataset.success; message.classList.remove('error'); }
-    form.reset();
-  } catch (err) {
-    if (message) { message.textContent = `Something went wrong: ${err.message}`; message.classList.add('error'); }
-  } finally {
-    submitButton?.removeAttribute('disabled');
-  }
-}));
-
-document.querySelectorAll('.faq-item button').forEach(button => button.addEventListener('click', () => {
-  const item = button.closest('.faq-item');
-  document.querySelectorAll('.faq-item').forEach(other => {
-    if (other !== item) {
-      other.classList.remove('open');
-      const otherButton = other.querySelector('button');
-      otherButton.setAttribute('aria-expanded', 'false');
-      otherButton.querySelector('use')?.setAttribute('href', 'assets/icons.svg#plus');
-    }
-  });
-  const open = item.classList.toggle('open');
-  button.setAttribute('aria-expanded', String(open));
-  button.querySelector('use')?.setAttribute('href', open ? 'assets/icons.svg#minus' : 'assets/icons.svg#plus');
-}));
-
-const showcaseData = {
-  history: { src: 'assets/app-screens/medical-reports.png', alt: 'DAD Reports app showing Your Medical Reports in chronological order' },
-  summary: { src: 'assets/app-screens/ai-summary.png', alt: 'DAD Reports AI video summary overview with report selection, narration and sharing steps' },
-  diagnostics: { src: 'assets/app-screens/completed-appointment.png', alt: 'DAD Reports diagnostic appointments showing a completed appointment and View report button' }
+  menuButton?.setAttribute('aria-expanded', String(open));
+  menuButton?.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
 };
 
-document.querySelectorAll('[data-showcase]').forEach(button => {
-  const activate = () => {
-  const data = showcaseData[button.dataset.showcase];
-  const screenshot = document.querySelector('.showcase-screenshot');
-  if (!screenshot || !data) return;
-  document.querySelectorAll('[data-showcase]').forEach(tab => {
-    const active = tab === button;
-    tab.classList.toggle('active', active);
-    tab.setAttribute('aria-pressed', String(active));
-  });
-  screenshot.src = data.src;
-  screenshot.alt = data.alt;
-  };
-  button.addEventListener('mouseenter', activate);
-  button.addEventListener('focus', activate);
-  button.addEventListener('click', activate);
-});
+menuButton?.addEventListener('click', () => setMenu(!nav.classList.contains('open')));
+nav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setMenu(false)));
+
+document.querySelectorAll('form[data-success]').forEach((form) =>
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const message = form.querySelector('.form-message');
+    const submitButton = form.querySelector('button[type="submit"]');
+    const data = Object.fromEntries(new FormData(form));
+    submitButton?.setAttribute('disabled', 'true');
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      const result = await res.json();
+      if (!res.ok || !result.ok) throw new Error(result.error || 'Submission failed');
+      if (message) {
+        message.textContent = form.dataset.success;
+        message.classList.remove('error');
+      }
+      form.reset();
+    } catch (err) {
+      if (message) {
+        message.textContent = `Your message was not sent. ${err.message}`;
+        message.classList.add('error');
+      }
+    } finally {
+      submitButton?.removeAttribute('disabled');
+    }
+  }),
+);
+
+document.querySelectorAll('.faq-item button').forEach((button) =>
+  button.addEventListener('click', () => {
+    const item = button.closest('.faq-item');
+    document.querySelectorAll('.faq-item').forEach((other) => {
+      if (other !== item) {
+        other.classList.remove('open');
+        const otherButton = other.querySelector('button');
+        otherButton.setAttribute('aria-expanded', 'false');
+        otherButton.querySelector('use')?.setAttribute('href', 'assets/icons.svg#plus');
+      }
+    });
+    const open = item.classList.toggle('open');
+    button.setAttribute('aria-expanded', String(open));
+    button
+      .querySelector('use')
+      ?.setAttribute('href', open ? 'assets/icons.svg#minus' : 'assets/icons.svg#plus');
+  }),
+);
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const reveals = document.querySelectorAll('.reveal');
 if (reducedMotion || !('IntersectionObserver' in window)) {
-  reveals.forEach(element => element.classList.add('visible'));
+  reveals.forEach((element) => element.classList.add('visible'));
 } else {
-  const observer = new IntersectionObserver(entries => entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    }
-  }), { threshold: 0.12, rootMargin: '0px 0px -40px' });
-  reveals.forEach(element => observer.observe(element));
+  const observer = new IntersectionObserver(
+    (entries) =>
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      }),
+    { threshold: 0.12, rootMargin: '0px 0px -40px' },
+  );
+  reveals.forEach((element) => observer.observe(element));
 }

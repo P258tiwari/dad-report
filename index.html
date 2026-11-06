@@ -1,157 +1,1042 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="DAD Reports — upload, organize, and access your medical reports in one secure health timeline.">
-  <meta name="theme-color" content="#24133f">
-  <title>DAD Reports — Your Health Records, Organized</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="footer.css">
-</head>
-<body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header" data-header>
-    <a class="brand" href="#home" aria-label="DAD Reports home"><img src="assets/dad-report-logo.png" alt=""><span><strong>DAD Reports</strong><small>Doctors At Door</small></span></a>
-    <nav class="main-nav" id="main-nav" aria-label="Main navigation"><a href="#why">Why DAD</a><a href="#features">Features</a><a href="#how">How it works</a><a href="#vision">Vision</a><a href="#roadmap">Roadmap</a><a href="#faq">FAQ</a></nav>
-    <a class="button button-primary header-cta" href="#early-access">Get early access <svg class="icon"><use href="assets/icons.svg#arrow-up-right"/></svg></a>
-    <button class="menu-button" type="button" aria-controls="main-nav" aria-expanded="false" aria-label="Open menu"><span></span><span></span></button>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="DAD Report is an app that helps you organize, understand, and share your medical reports."
+    />
+    <meta name="theme-color" content="#24133f" />
+    <title>DAD Report — Organize your medical reports</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png" />
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header" data-header>
+      <a class="brand" href="#home" aria-label="DAD Report home"
+        ><img src="assets/dad-report-logo.png" alt="" /><span
+          ><strong>DAD Report</strong><small>Doctors At Door</small></span
+        ></a
+      >
+      <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+        <a href="#why">Why DAD Report</a><a href="#features">Features</a><a href="#how">How it works</a
+        ><a href="#vision">Vision</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
+      </nav>
+      <a
+        class="button button-primary header-cta"
+        href="https://play.google.com/store/apps/details?id=com.doctorsatdoor.patientapp"
+        target="_blank"
+        rel="noopener"
+        >Download app <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#arrow-up-right" /></svg
+      ></a>
+      <button
+        class="menu-button"
+        type="button"
+        aria-controls="main-nav"
+        aria-expanded="false"
+        aria-label="Open menu"
+      >
+        <span></span><span></span>
+      </button>
+    </header>
 
-  <main id="main">
-    <section class="hero" id="home">
-      <div class="hero-copy reveal">
-        <p class="eyebrow"><svg class="hero-ai-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3l2.5 6.5L19 12l-6.5 2.5L10 21l-2.5-6.5L1 12l6.5-2.5L10 3zM20 1l1.1 2.9L24 5l-2.9 1.1L20 9l-1.1-2.9L16 5l2.9-1.1L20 1z" fill="currentColor"/></svg> AI Powered &middot; DAD Report System</p>
-        <h1><span>Every health report.</span><em>One organized place.</em></h1>
-        <p class="hero-lede">Upload, organize, and access your medical reports whenever your care needs them. DAD Reports gives every user a simpler way to carry their health history forward.</p>
-        <div class="hero-actions"><a class="button button-accent" href="#early-access">Organize my reports <svg class="icon"><use href="assets/icons.svg#arrow-up-right"/></svg></a><a class="button button-quiet" href="#how"><span class="play"><svg class="icon"><use href="assets/icons.svg#play"/></svg></span> See how it works</a></div>
-        <div class="store-row" aria-label="App availability">
-          <button class="store-button" disabled><span class="store-icon"><svg class="icon"><use href="assets/icons.svg#android"/></svg></span><span><small>Android app</small><strong>Coming Soon</strong></span></button>
-          <button class="store-button" disabled><span class="store-icon"><svg class="icon"><use href="assets/icons.svg#apple"/></svg></span><span><small>iPhone app</small><strong>Coming Soon</strong></span></button>
+    <main id="main">
+      <section class="hero" id="home">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">
+            <svg class="hero-ai-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M10 3l2.5 6.5L19 12l-6.5 2.5L10 21l-2.5-6.5L1 12l6.5-2.5L10 3zM20 1l1.1 2.9L24 5l-2.9 1.1L20 9l-1.1-2.9L16 5l2.9-1.1L20 1z"
+                fill="currentColor"
+              />
+            </svg>
+            Medical report app with AI
+          </p>
+          <h1><span>Your medical reports,</span><em>organized in one app.</em></h1>
+          <p class="hero-lede">
+            DAD Report helps you organize, understand, and share your medical reports. Upload PDFs or images
+            and see them arranged by date.
+          </p>
+          <div class="store-row" aria-label="Get the app">
+            <a
+              class="store-button store-live"
+              href="https://play.google.com/store/apps/details?id=com.doctorsatdoor.patientapp"
+              target="_blank"
+              rel="noopener"
+              aria-label="Get DAD Report on Google Play"
+              ><span class="store-icon"
+                ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#android" /></svg></span
+              ><span><small>Get it on</small><strong>Google Play</strong></span></a
+            >
+            <span class="store-button store-soon"
+              ><span class="store-icon"
+                ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#apple" /></svg></span
+              ><span><small>iPhone app</small><strong>Coming soon</strong></span></span
+            >
+          </div>
+          <a class="hero-link" href="#how"
+            >See how it works
+            <svg class="icon icon-down" aria-hidden="true"><use href="assets/icons.svg#arrow-right" /></svg
+          ></a>
+          <div class="trust-line">
+            <span>PDFs and images</span><span>AI summaries</span><span>Family profiles</span>
+          </div>
         </div>
-        <div class="trust-line"><span>Built for real healthcare</span><span>Doctor-connected</span><span>Made in India</span></div>
-      </div>
-      <div class="hero-stage reveal" aria-label="DAD Reports product preview">
-        <div class="ambient-orb"></div>
-        <img class="hero-photo" src="assets/dad-family-care.png" alt="Indian family reviewing health information with a doctor at home" width="1823" height="863">
-        <div class="device device-main">
-          <div class="device-bar"><span>9:41</span><i></i><b>•••</b></div>
-          <div class="app-top"><img src="assets/dad-report-logo.png" alt="" width="42" height="42"><div><small>Good morning</small><strong>Your Reports</strong></div><button aria-label="Notifications"><svg class="icon"><use href="assets/icons.svg#bell"/></svg></button></div>
-          <div class="app-summary"><small>HEALTH TIMELINE</small><strong>12 Reports</strong><span>Updated today</span><i></i></div>
-          <div class="quick-actions"><span><b><svg class="icon"><use href="assets/icons.svg#plus"/></svg></b>Upload</span><span><b><svg class="icon"><use href="assets/icons.svg#link"/></svg></b>Doctor PING</span><span><b><svg class="icon"><use href="assets/icons.svg#search"/></svg></b>Find</span></div>
-          <div class="list-title"><strong>Recent reports</strong><span>View all</span></div>
-          <article class="report-item"><i>PDF</i><span><strong>Complete Blood Count</strong><small>Pathology · Today</small></span><b>···</b></article>
-          <article class="report-item"><i>PDF</i><span><strong>Chest X-Ray Report</strong><small>Radiology · 08 Jul 2026</small></span><b>···</b></article>
-          <article class="report-item"><i>RX</i><span><strong>Dr. Sharma's Prescription</strong><small>Doctor Upload · 02 Jul 2026</small></span><b>···</b></article>
+        <div class="hero-stage reveal" aria-label="DAD Report app preview">
+          <div class="ambient-orb"></div>
+          <img
+            class="hero-photo"
+            src="assets/dad-family-care.png"
+            alt="A family looking at medical reports on a phone with a doctor"
+            width="1823"
+            height="863"
+          />
+          <div class="device-main hero-screen">
+            <div class="phone">
+              <img
+                src="assets/app-screens/home.png"
+                alt="DAD Report app home screen with options to upload, organize, and share reports"
+                width="1179"
+                height="2556"
+              /><span class="island" aria-hidden="true"></span>
+            </div>
+          </div>
+          <div class="float-card float-doctor">
+            <i>AI</i><span><strong>AI summary ready</strong><small>Key points from your report</small></span>
+          </div>
         </div>
-        <div class="float-card float-upload"><i><svg class="icon"><use href="assets/icons.svg#check"/></svg></i><span><strong>Report uploaded</strong><small>Added to your timeline</small></span></div>
-        <div class="float-card float-doctor"><i>DS</i><span><strong>Doctor connected</strong><small>Report shared securely</small></span></div>
-      </div>
-    </section>
+      </section>
 
-    <section class="impact" aria-label="DAD care standards">
-      <div><i><svg class="icon"><use href="assets/icons.svg#user-check"/></svg></i><span class="impact-copy"><strong>Verified</strong><small>Doctors, credentials, and sources</small></span></div><div><i><svg class="icon"><use href="assets/icons.svg#headset"/></svg></i><span class="impact-copy"><strong>Admin-Assisted</strong><small>Human help when coordination matters</small></span></div><div><i><svg class="icon"><use href="assets/icons.svg#activity"/></svg></i><span class="impact-copy"><strong>Tracked</strong><small>Every report and care step visible</small></span></div><div><i><svg class="icon"><use href="assets/icons.svg#users"/></svg></i><span class="impact-copy"><strong>340+</strong><small>People already waiting for DAD</small></span></div>
-    </section>
+      <section class="impact" aria-label="DAD Report highlights">
+        <div>
+          <i
+            ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#records" /></svg></i
+          ><span class="impact-copy"
+            ><strong>Report timeline</strong><small>Your reports arranged by date</small></span
+          >
+        </div>
+        <div>
+          <i
+            ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#activity" /></svg></i
+          ><span class="impact-copy"
+            ><strong>AI summary</strong><small>Key points in simple words</small></span
+          >
+        </div>
+        <div>
+          <i
+            ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#users" /></svg></i
+          ><span class="impact-copy"
+            ><strong>Family profiles</strong><small>Reports for each family member</small></span
+          >
+        </div>
+        <div>
+          <i
+            ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#user-check" /></svg></i
+          ><span class="impact-copy"
+            ><strong>Doctor follow-up</strong><small>Send a follow-up request</small></span
+          >
+        </div>
+      </section>
 
-    <section class="manifesto section reveal"><p><span class="manifesto-line">Medical reports are not just files.</span><br><strong>They are your health story.</strong></p><div><span class="eyebrow">The DAD Approach</span><p>When reports are scattered across phones, paper files, labs, and clinics, your complete health history gets lost. DAD Reports brings every record into one digitally synced, data-driven timeline—ready for you and your doctor when it matters.</p></div></section>
+      <section class="manifesto section reveal">
+        <p>
+          <span class="manifesto-line">Your reports should be easy to find.</span><br /><strong
+            >Not lost in files and phones.</strong
+          >
+        </p>
+        <div>
+          <span class="eyebrow">Why we built DAD Report</span>
+          <p>
+            Medical reports are spread across phones, paper files, labs, and clinics. DAD Report keeps them in
+            one app, arranged by date, so you can find the right report when your doctor asks for it.
+          </p>
+        </div>
+      </section>
 
-    <section class="section problems" id="why">
-      <div class="section-heading reveal"><span class="eyebrow">Why DAD Reports</span><h2>Healthcare is fragmented.<br><em>DAD completes the cycle.</em></h2><p>By providing an Eco-system that connects and coordinates fragmented healthcare under one platform.</p></div>
-      <div class="problem-editorial">
-        <article class="problem-feature reveal"><span>04 / CORE</span><div class="problem-symbol"><svg class="icon"><use href="assets/icons.svg#records"/></svg></div><h3>Lifetime Health Record Timeline</h3><p>Health records remain scattered across papers and providers, making them difficult to access, track, and use when timely care matters most.</p><a href="#features">See how DAD connects records <svg class="icon"><use href="assets/icons.svg#arrow-right"/></svg></a></article>
-        <div class="problem-list reveal">
-          <article><b>01</b><div><h3>Long waiting hours</h3><p>Patients endure repeated stress from multiple doctor visits, often worsening their condition and requiring unnecessary involvement of family and friends.</p></div></article>
-          <article><b>02</b><div><h3>Delayed diagnosis</h3><p>High patient volumes and limited consultation time can lead to incomplete diagnosis and delayed detection of serious illnesses.</p></div></article>
-          <article><b>03</b><div><h3>Hyperlocal Connectivity</h3><p>Poor hyperlocal connectivity makes it difficult to move seamlessly between clinics, hospitals, labs, pharmacies, and care support.</p></div></article>
-          <article><b>05</b><div><h3>Doorstep diagnosis and healthcare</h3><p>Patients still travel for basic healthcare, making care exhausting and inconvenient when essential support should be accessible at home.</p></div></article>
-          <article><b>06</b><div><h3>Long commuting hours</h3><p>Travel between clinics, labs, and hospitals for consultations, tests, and follow-ups makes the care journey inefficient and physically draining.</p></div></article>
-          <article><b>07</b><div><h3>Unnecessary overhead expenses</h3><p>Repeated visits, duplicate tests, travel, and fragmented healthcare services create costs that patients should not have to bear.</p></div></article>
-          <article><b>08</b><div><h3>Cross-border referral connectivity</h3><p>Disconnected and non-digitally integrated referral systems limit access to the right specialists and expert opinions across national and international regions.</p></div></article>
+      <section class="section why" id="why">
+        <div class="section-heading centered reveal">
+          <span class="eyebrow">Why DAD Report</span>
+          <h2>Reports are hard to manage.<br /><em>DAD Report makes it easier.</em></h2>
+          <p>Common problems with medical reports, and how the app helps with each one.</p>
+        </div>
+        <div class="ps-grid">
+          <article class="ps-card reveal">
+            <div class="ps-problem">
+              <span class="ps-label">The problem</span>
+              <h3>Reports are scattered</h3>
+              <p>Reports sit in paper files, phone photos, chats, and emails.</p>
+            </div>
+            <i class="ps-arrow" aria-hidden="true"
+              ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#arrow-right" /></svg
+            ></i>
+            <div class="ps-solution">
+              <span class="ps-label"
+                ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#records" /></svg>With DAD
+                Report</span
+              >
+              <h3>All your reports in one timeline</h3>
+              <p>Upload PDFs or images. Let AI add them to your timeline by date.</p>
+            </div>
+          </article>
+          <article class="ps-card reveal">
+            <div class="ps-problem">
+              <span class="ps-label">The problem</span>
+              <h3>Reports are hard to understand</h3>
+              <p>Medical terms and test values can be difficult to read.</p>
+            </div>
+            <i class="ps-arrow" aria-hidden="true"
+              ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#arrow-right" /></svg
+            ></i>
+            <div class="ps-solution">
+              <span class="ps-label"
+                ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#activity" /></svg>With DAD
+                Report</span
+              >
+              <h3>AI explains your reports</h3>
+              <p>Read an AI summary, or get an AI video explanation.</p>
+            </div>
+          </article>
+          <article class="ps-card reveal">
+            <div class="ps-problem">
+              <span class="ps-label">The problem</span>
+              <h3>One treatment, many reports</h3>
+              <p>Reports for the same treatment are hard to keep together.</p>
+            </div>
+            <i class="ps-arrow" aria-hidden="true"
+              ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#arrow-right" /></svg
+            ></i>
+            <div class="ps-solution">
+              <span class="ps-label"
+                ><svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M3 7.5A2.5 2.5 0 0 1 5.5 5H9l2 2.5h7.5A2.5 2.5 0 0 1 21 10v7.5a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5z"
+                  /></svg
+                >With DAD Report</span
+              >
+              <h3>A folder for each treatment</h3>
+              <p>Create a folder for a treatment and keep its reports together.</p>
+            </div>
+          </article>
+          <article class="ps-card reveal">
+            <div class="ps-problem">
+              <span class="ps-label">The problem</span>
+              <h3>Family reports get mixed up</h3>
+              <p>It is hard to keep each family member's reports separate.</p>
+            </div>
+            <i class="ps-arrow" aria-hidden="true"
+              ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#arrow-right" /></svg
+            ></i>
+            <div class="ps-solution">
+              <span class="ps-label"
+                ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#users" /></svg>With DAD
+                Report</span
+              >
+              <h3>A profile for each family member</h3>
+              <p>Add family members and switch profiles to see their reports.</p>
+            </div>
+          </article>
+          <article class="ps-card reveal">
+            <div class="ps-problem">
+              <span class="ps-label">The problem</span>
+              <h3>Medical insurance is hard to read</h3>
+              <p>It is hard to see what your policy covers and what it does not.</p>
+            </div>
+            <i class="ps-arrow" aria-hidden="true"
+              ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#arrow-right" /></svg
+            ></i>
+            <div class="ps-solution">
+              <span class="ps-label"
+                ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#shield" /></svg>With DAD
+                Report</span
+              >
+              <h3>AI explains your policy</h3>
+              <p>Upload your policy. AI explains its cover, exclusions, and costs.</p>
+            </div>
+          </article>
+          <article class="ps-card reveal">
+            <div class="ps-problem">
+              <span class="ps-label">The problem</span>
+              <h3>Tests and follow-ups take effort</h3>
+              <p>Booking tests, collecting reports, and following up take time.</p>
+            </div>
+            <i class="ps-arrow" aria-hidden="true"
+              ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#arrow-right" /></svg
+            ></i>
+            <div class="ps-solution">
+              <span class="ps-label"
+                ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#user-check" /></svg>With DAD
+                Report</span
+              >
+              <h3>Tests and follow-ups in the app</h3>
+              <p>Schedule tests your doctor requests, and request a follow-up.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section features" id="features">
+        <div class="section-heading centered reveal">
+          <span class="eyebrow">Features</span>
+          <h2>What you can do<br /><em>with DAD Report.</em></h2>
+          <p>Organize, understand, and share your medical reports in one app.</p>
+        </div>
+        <div class="fx-grid">
+          <article class="fx-group reveal">
+            <header>
+              <span class="fx-kicker">Organize <b>01</b></span>
+              <h3>Keep your reports in order.</h3>
+            </header>
+            <ul class="fx-list">
+              <li>
+                <i
+                  ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#records" /></svg
+                ></i>
+                <div>
+                  <strong>Upload and timeline</strong>
+                  <p>Upload PDFs or images. Let AI add them to your timeline.</p>
+                </div>
+              </li>
+              <li>
+                <i
+                  ><svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M3 7.5A2.5 2.5 0 0 1 5.5 5H9l2 2.5h7.5A2.5 2.5 0 0 1 21 10v7.5a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5z"
+                    /></svg
+                ></i>
+                <div>
+                  <strong>Treatment folders</strong>
+                  <p>Create a folder for each treatment and keep its reports together.</p>
+                </div>
+              </li>
+              <li>
+                <i
+                  ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#users" /></svg
+                ></i>
+                <div>
+                  <strong>Family profiles</strong>
+                  <p>Add family members and switch profiles to see their reports.</p>
+                </div>
+              </li>
+            </ul>
+          </article>
+          <article class="fx-group fx-group-dark reveal">
+            <header>
+              <span class="fx-kicker">Understand <b>02</b></span>
+              <h3>Know what your reports say.</h3>
+            </header>
+            <ul class="fx-list">
+              <li>
+                <i
+                  ><svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="m10 3 2.5 6.5L19 12l-6.5 2.5L10 21l-2.5-6.5L1 12l6.5-2.5L10 3Zm10-2 1.1 2.9L24 5l-2.9 1.1L20 9l-1.1-2.9L16 5l2.9-1.1L20 1Z"
+                      fill="currentColor"
+                      stroke="none"
+                    /></svg
+                ></i>
+                <div>
+                  <strong>AI summary</strong>
+                  <p>Read an AI summary of your reports in simple words.</p>
+                </div>
+              </li>
+              <li>
+                <i
+                  ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#play" /></svg
+                ></i>
+                <div>
+                  <strong>AI video explanation</strong>
+                  <p>Select reports. Get an AI avatar video after processing.</p>
+                </div>
+              </li>
+              <li>
+                <i
+                  ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#shield" /></svg
+                ></i>
+                <div>
+                  <strong>Medical insurance policy</strong>
+                  <p>Upload your policy. AI explains its cover, exclusions, and costs.</p>
+                </div>
+              </li>
+            </ul>
+          </article>
+          <article class="fx-group reveal">
+            <header>
+              <span class="fx-kicker">Connect <b>03</b></span>
+              <h3>Tests, doctors, and support.</h3>
+            </header>
+            <ul class="fx-list">
+              <li>
+                <i
+                  ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#clipboard" /></svg
+                ></i>
+                <div>
+                  <strong>Test requests</strong>
+                  <p>Schedule tests your doctor requests. Get the reports in the app.</p>
+                </div>
+              </li>
+              <li>
+                <i
+                  ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#user-check" /></svg
+                ></i>
+                <div>
+                  <strong>Doctor follow-up</strong>
+                  <p>Choose a doctor, describe your problem, and send a follow-up request.</p>
+                </div>
+              </li>
+              <li>
+                <i
+                  ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#headset" /></svg
+                ></i>
+                <div>
+                  <strong>Contact support</strong>
+                  <p>Contact support if you need help using the app.</p>
+                </div>
+              </li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="screens section" id="app" aria-labelledby="screens-title">
+        <div class="section-heading centered reveal">
+          <span class="eyebrow">Inside the app</span>
+          <h2 id="screens-title">A look inside<br /><em>DAD Report.</em></h2>
+          <p>Real screens from the DAD Report app.</p>
+        </div>
+        <div class="screen-grid">
+          <article class="screen-card reveal">
+            <span class="screen-tag">Report timeline</span>
+            <h3>All your reports, by date</h3>
+            <p>Every report you upload, arranged by date.</p>
+            <div class="phone">
+              <img
+                src="assets/app-screens/medical-reports.png"
+                alt="DAD Report app showing medical reports in date order"
+                width="1179"
+                height="2556"
+                loading="lazy"
+              /><span class="island" aria-hidden="true"></span>
+            </div>
+          </article>
+          <article class="screen-card screen-card-dark reveal">
+            <span class="screen-tag">AI video explanation</span>
+            <h3>Your reports, explained by AI</h3>
+            <p>Select reports and get a video explanation.</p>
+            <div class="phone">
+              <img
+                src="assets/app-screens/ai-summary.png"
+                alt="AI video explanation screen showing how to pick reports and watch the video"
+                width="1179"
+                height="2556"
+                loading="lazy"
+              /><span class="island" aria-hidden="true"></span>
+            </div>
+          </article>
+          <article class="screen-card reveal">
+            <span class="screen-tag">Diagnostic tests</span>
+            <h3>Tests your doctor requests</h3>
+            <p>Schedule the test, then view the report in the app.</p>
+            <div class="phone">
+              <img
+                src="assets/app-screens/completed-appointment.png"
+                alt="Diagnostic appointments screen with unscheduled, upcoming, and completed tests and a View report button"
+                width="1179"
+                height="2556"
+                loading="lazy"
+              /><span class="island" aria-hidden="true"></span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="process section" id="how">
+        <div class="section-heading reveal">
+          <span class="eyebrow">How it works</span>
+          <h2>Get started in four steps.</h2>
+          <p>Create your profile, add your reports, and keep them organized.</p>
+        </div>
+        <ol class="process-list">
+          <li class="reveal">
+            <span>01</span>
+            <div>
+              <h3>Create your profile</h3>
+              <p>Sign up and add family members if you manage their reports too.</p>
+            </div>
+            <i>Profile</i>
+          </li>
+          <li class="reveal">
+            <span>02</span>
+            <div>
+              <h3>Upload your reports</h3>
+              <p>Upload PDFs or images of your medical reports from your phone.</p>
+            </div>
+            <i>Upload</i>
+          </li>
+          <li class="reveal">
+            <span>03</span>
+            <div>
+              <h3>Organize and understand</h3>
+              <p>
+                Add reports to treatment folders, or let AI add them to your timeline. Read an AI summary.
+              </p>
+            </div>
+            <i>Organize</i>
+          </li>
+          <li class="reveal">
+            <span>04</span>
+            <div>
+              <h3>Share or follow up</h3>
+              <p>Share the reports you choose, or send a follow-up request to a doctor.</p>
+            </div>
+            <i>Share</i>
+          </li>
+        </ol>
+      </section>
+
+      <section class="doctor-section" id="doctors" aria-labelledby="doctor-title">
+        <div class="doctor-image reveal">
+          <img
+            src="assets/dad-doctor-tablet.png"
+            alt="A doctor looking at reports on a tablet with a patient and a family member"
+            width="1536"
+            height="1024"
+            loading="lazy"
+          />
+          <div class="verified-card">
+            <i
+              ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#user-check" /></svg></i
+            ><span><b>Follow-up request</b><small>Sent to your chosen doctor</small></span>
+          </div>
+        </div>
+        <div class="doctor-copy reveal">
+          <span class="eyebrow">Doctor follow-up</span>
+          <h2 id="doctor-title">Need a follow-up?<br /><em>Send a request.</em></h2>
+          <p>Use PING to send a follow-up request to a doctor. The doctor can then contact you.</p>
+          <ol class="followup-steps">
+            <li><span>01</span>Choose a location and doctor</li>
+            <li><span>02</span>Describe your problem</li>
+            <li><span>03</span>Send your follow-up request</li>
+          </ol>
+          <p class="followup-note">
+            PING is for follow-up only. It is not an OPD consultation or appointment booking.
+          </p>
+          <a
+            class="button button-accent"
+            href="https://play.google.com/store/apps/details?id=com.doctorsatdoor.patientapp"
+            target="_blank"
+            rel="noopener"
+            >Download for Android
+            <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#arrow-right" /></svg
+          ></a>
+        </div>
+      </section>
+
+      <section class="vision section" id="vision">
+        <div class="vision-copy reveal">
+          <span class="eyebrow">Doctors At Door</span>
+          <h2>DAD Report is the first step.</h2>
+          <p>
+            DAD Report is the first app from Doctors At Door. The wider DAD platform aims to connect patients,
+            doctors, diagnostic centers, clinics, and hospitals. More services are planned for later versions.
+          </p>
+        </div>
+        <div class="ecosystem reveal">
+          <div class="ecosystem-core">
+            <img src="assets/dad-primary-logo.png" alt="Doctors At Door logo" width="70" height="70" />
+            <div class="ecosystem-brand">
+              <strong>Doctors At Door</strong><span class="platform-chip">Platform</span>
+            </div>
+          </div>
+          <div class="nodes live">
+            <span>Patients</span><span>Doctors</span><span>DAD admin team</span
+            ><span>Diagnostic centers and labs</span><span>Clinics and hospitals</span>
+          </div>
+          <div class="nodes future">
+            <span>Pharmacy <b>V2</b></span
+            ><span>DAD Paramedic <b>V2</b></span
+            ><span>DAD AI Health Assistant <b>V3</b></span
+            ><span>DAD Marketplace <b>V3</b></span
+            ><span>Fitness and wellness <b>V4</b></span
+            ><span>Holistic healthcare <b>V4</b></span
+            ><span>DAD Healthcare Community <b>V4</b></span>
+          </div>
+          <small>Solid: included in version 1 · Dashed: planned for later versions</small>
+        </div>
+      </section>
+
+      <section class="security section" id="security">
+        <div class="security-copy reveal">
+          <span class="eyebrow">Privacy and AI</span>
+          <h2>Your reports, your choice.</h2>
+          <p>
+            Each profile keeps its own reports, and you choose which reports to share. Read how we protect
+            your data on our
+            <a href="https://www.doctorsatdoor.com/data-security" target="_blank" rel="noopener"
+              >data security page</a
+            >.
+          </p>
+        </div>
+        <div class="security-cards">
+          <article class="reveal">
+            <i
+              ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#users" /></svg
+            ></i>
+            <h3>Separate profiles</h3>
+            <p>
+              Each family member's reports stay in their own profile. Switching profiles does not merge them.
+            </p>
+          </article>
+          <article class="reveal">
+            <i
+              ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#share" /></svg
+            ></i>
+            <h3>You choose what to share</h3>
+            <p>Share only the reports you select.</p>
+          </article>
+          <article class="reveal">
+            <i
+              ><svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="m10 3 2.5 6.5L19 12l-6.5 2.5L10 21l-2.5-6.5L1 12l6.5-2.5L10 3Zm10-2 1.1 2.9L24 5l-2.9 1.1L20 9l-1.1-2.9L16 5l2.9-1.1L20 1Z"
+                  fill="currentColor"
+                  stroke="none"
+                /></svg
+            ></i>
+            <h3>AI is not a doctor</h3>
+            <p>
+              AI summaries and videos help you understand your reports. They are not a diagnosis or treatment
+              advice.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="download section" id="download" aria-labelledby="download-title">
+        <div class="download-copy reveal">
+          <span class="eyebrow">DAD Report app</span>
+          <h2 id="download-title">Your reports.<br /><em>On your phone.</em></h2>
+          <p>Upload, organize, and understand your medical reports in one app.</p>
+          <ul class="download-features">
+            <li>
+              <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#records" /></svg>Report
+              timeline
+            </li>
+            <li>
+              <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#activity" /></svg>AI summary
+            </li>
+            <li>
+              <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#users" /></svg>Family profiles
+            </li>
+          </ul>
+          <a
+            class="button button-accent"
+            href="https://play.google.com/store/apps/details?id=com.doctorsatdoor.patientapp"
+            target="_blank"
+            rel="noopener"
+            >Get it on Google Play
+            <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#arrow-up-right" /></svg
+          ></a>
+          <div class="download-availability">
+            <span>AVAILABLE ON</span>
+            <div>
+              <a
+                href="https://play.google.com/store/apps/details?id=com.doctorsatdoor.patientapp"
+                target="_blank"
+                rel="noopener"
+                ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#android" /></svg>Android</a
+              ><span class="soon"
+                ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#apple" /></svg>iPhone:
+                coming soon</span
+              >
+            </div>
+            <p>The iPhone app is coming soon. Contact us to hear when it is available.</p>
+          </div>
+        </div>
+        <div class="download-device reveal">
+          <div class="download-halo" aria-hidden="true"></div>
+          <div class="phone download-phone">
+            <img
+              src="assets/app-screens/home.png"
+              alt="DAD Report home screen with options to upload, organize, and share reports"
+              width="1179"
+              height="2556"
+              loading="lazy"
+            /><span class="island" aria-hidden="true"></span>
+          </div>
+          <span class="download-preview-label">DAD REPORT HOME SCREEN</span>
+        </div>
+      </section>
+
+      <section class="faq section" id="faq">
+        <div class="faq-intro reveal">
+          <span class="eyebrow">FAQ</span>
+          <h2>Questions and answers.</h2>
+          <p>Short answers about the DAD Report app.</p>
+          <a href="/survey"
+            >Take our healthcare survey
+            <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#arrow-up-right" /></svg
+          ></a>
+        </div>
+        <div class="faq-list">
+          <article class="faq-item open reveal">
+            <h3>
+              <button type="button" aria-expanded="true">
+                <span>What is DAD Report?</span
+                ><i
+                  ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#minus" /></svg
+                ></i>
+              </button>
+            </h3>
+            <div>
+              <p>
+                DAD Report is an app that helps you organize, understand, and share your medical reports. It
+                is the first app from Doctors At Door.
+              </p>
+            </div>
+          </article>
+          <article class="faq-item reveal">
+            <h3>
+              <button type="button" aria-expanded="false">
+                <span>What can I upload?</span
+                ><i
+                  ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#plus" /></svg
+                ></i>
+              </button>
+            </h3>
+            <div>
+              <p>
+                You can upload medical reports as PDFs or images. Keep them in treatment folders, or let AI
+                add them to your timeline.
+              </p>
+            </div>
+          </article>
+          <article class="faq-item reveal">
+            <h3>
+              <button type="button" aria-expanded="false">
+                <span>Can I manage reports for my family?</span
+                ><i
+                  ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#plus" /></svg
+                ></i>
+              </button>
+            </h3>
+            <div>
+              <p>
+                Yes. Add a family member to create their profile, then add and view their reports. Use Switch
+                profile to change whose reports you see. A family profile is not a separate account.
+              </p>
+            </div>
+          </article>
+          <article class="faq-item reveal">
+            <h3>
+              <button type="button" aria-expanded="false">
+                <span>Does the AI summary replace medical advice?</span
+                ><i
+                  ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#plus" /></svg
+                ></i>
+              </button>
+            </h3>
+            <div>
+              <p>
+                No. The AI summary helps you understand your reports. Diagnosis and treatment decisions stay
+                with your doctor.
+              </p>
+            </div>
+          </article>
+          <article class="faq-item reveal">
+            <h3>
+              <button type="button" aria-expanded="false">
+                <span>What is an AI video explanation?</span
+                ><i
+                  ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#plus" /></svg
+                ></i>
+              </button>
+            </h3>
+            <div>
+              <p>
+                It is a video about reports you select. An AI avatar, AI narration, and AI visuals explain the
+                information in those reports. Your video is ready after processing. The avatar is not a real
+                doctor.
+              </p>
+            </div>
+          </article>
+          <article class="faq-item reveal">
+            <h3>
+              <button type="button" aria-expanded="false">
+                <span>Can the app explain my medical insurance policy?</span
+                ><i
+                  ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#plus" /></svg
+                ></i>
+              </button>
+            </h3>
+            <div>
+              <p>
+                Yes. Upload your medical insurance policy. AI explains what it covers, what it does not cover,
+                and the costs shown in it. The app does not sell insurance or approve claims.
+              </p>
+            </div>
+          </article>
+          <article class="faq-item reveal">
+            <h3>
+              <button type="button" aria-expanded="false">
+                <span>How do diagnostic test requests work?</span
+                ><i
+                  ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#plus" /></svg
+                ></i>
+              </button>
+            </h3>
+            <div>
+              <p>
+                Your doctor selects the tests and a diagnostic center. You receive a test request and choose a
+                date and time. After your test, the diagnostic center uploads your reports to the app.
+              </p>
+            </div>
+          </article>
+          <article class="faq-item reveal">
+            <h3>
+              <button type="button" aria-expanded="false">
+                <span>What is a PING?</span
+                ><i
+                  ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#plus" /></svg
+                ></i>
+              </button>
+            </h3>
+            <div>
+              <p>
+                A PING is a follow-up request. Choose a location and doctor, describe your problem, and send
+                the request. It is not an OPD consultation or appointment booking.
+              </p>
+            </div>
+          </article>
+          <article class="faq-item reveal">
+            <h3>
+              <button type="button" aria-expanded="false">
+                <span>Is DAD Report available now?</span
+                ><i
+                  ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#plus" /></svg
+                ></i>
+              </button>
+            </h3>
+            <div>
+              <p>
+                Yes, on Android.
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.doctorsatdoor.patientapp"
+                  target="_blank"
+                  rel="noopener"
+                  >Download DAD Report from Google Play</a
+                >. The iPhone app is coming soon. Contact us to hear when it is available.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="contact" id="contact" aria-labelledby="contact-title">
+        <div class="access-copy reveal">
+          <span class="eyebrow access-badge">CONTACT US</span>
+          <h2 id="contact-title">Questions?<br /><em>We are here to help.</em></h2>
+          <p>
+            Ask about the app or the iPhone launch. Doctors, diagnostic centers, and clinics can also contact
+            us to work with DAD.
+          </p>
+          <ul class="access-benefits">
+            <li>
+              <i
+                ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#mail" /></svg
+              ></i>
+              <div>
+                <strong>Email us</strong
+                ><a href="mailto:support@doctorsatdoor.com">support@doctorsatdoor.com</a>
+              </div>
+            </li>
+            <li>
+              <i
+                ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#users" /></svg
+              ></i>
+              <div>
+                <strong>Doctors, labs, and clinics</strong
+                ><span>Want to work with DAD? Tell us about your practice or center.</span>
+              </div>
+            </li>
+            <li>
+              <i
+                ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#share" /></svg
+              ></i>
+              <div>
+                <strong>Follow Doctors At Door</strong>
+                <div class="social-links">
+                  <a
+                    href="https://www.facebook.com/doctorsatdoor.offical/"
+                    target="_blank"
+                    rel="noopener"
+                    aria-label="Follow Doctors At Door on Facebook"
+                    ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#facebook" /></svg></a
+                  ><a
+                    href="https://www.instagram.com/doctorsatdoor/"
+                    target="_blank"
+                    rel="noopener"
+                    aria-label="Follow Doctors At Door on Instagram"
+                    ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#instagram" /></svg></a
+                  ><a
+                    href="https://www.youtube.com/@doctorsatdoor"
+                    target="_blank"
+                    rel="noopener"
+                    aria-label="Follow Doctors At Door on YouTube"
+                    ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#youtube" /></svg></a
+                  ><a
+                    href="https://x.com/doctors_at_door"
+                    target="_blank"
+                    rel="noopener"
+                    aria-label="Follow Doctors At Door on X"
+                    ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#x" /></svg></a
+                  ><a
+                    href="https://www.linkedin.com/company/doctors-at-door/"
+                    target="_blank"
+                    rel="noopener"
+                    aria-label="Follow Doctors At Door on LinkedIn"
+                    ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#linkedin" /></svg
+                  ></a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <form class="access-form reveal" data-success="Thank you. Your message has been sent.">
+          <h3>Send us a message</h3>
+          <p>Tell us how we can help.</p>
+          <label
+            >Full name *<input required name="name" autocomplete="name" placeholder="Your full name"
+          /></label>
+          <div class="form-row">
+            <label
+              >Phone number *<input
+                required
+                type="tel"
+                name="phone"
+                autocomplete="tel"
+                placeholder="Your mobile number" /></label
+            ><label
+              >Email address<input type="email" name="email" autocomplete="email" placeholder="you@email.com"
+            /></label>
+          </div>
+          <label>City<input name="city" autocomplete="address-level2" placeholder="Your city" /></label
+          ><label
+            >Message<textarea
+              name="message"
+              rows="4"
+              maxlength="2000"
+              placeholder="For example: help with the app, the iPhone app, or working with DAD"
+            ></textarea></label
+          ><button class="button button-accent" type="submit">
+            Send message
+            <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#arrow-up-right" /></svg></button
+          ><small>We use your details only to reply to your message.</small>
+          <p class="form-message" aria-live="polite"></p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-actions">
+        <a class="footer-action survey-action" href="/survey"
+          ><i
+            ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#clipboard" /></svg></i
+          ><span><small>Help shape DAD Report</small><strong>Take our healthcare survey</strong></span
+          ><svg class="icon action-arrow" aria-hidden="true">
+            <use href="assets/icons.svg#arrow-up-right" /></svg
+        ></a>
+        <a
+          class="footer-action app-action app-live"
+          href="https://play.google.com/store/apps/details?id=com.doctorsatdoor.patientapp"
+          target="_blank"
+          rel="noopener"
+          ><i
+            ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#android" /></svg></i
+          ><span><small>Android app</small><strong>Get it on Google Play</strong></span
+          ><svg class="icon action-arrow" aria-hidden="true">
+            <use href="assets/icons.svg#arrow-up-right" /></svg
+        ></a>
+        <div class="footer-action app-action">
+          <i
+            ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#apple" /></svg></i
+          ><span><small>iPhone app</small><strong>Coming soon</strong></span>
         </div>
       </div>
-      <div class="answer-strip reveal"><div class="answer-copy"><span class="answer-label">THE DAD ANSWER</span><h3>Your reports today.<br><em>More connected care tomorrow.</em></h3><p>Start with one organized health report timeline. Discover our vision for connecting diagnostics, doctors, referrals, and follow-up care.</p><a class="button button-accent" href="#vision">Explore the ecosystem <svg class="icon"><use href="assets/icons.svg#arrow-up-right"/></svg></a></div><div class="answer-path"><div class="answer-step current"><b>01</b><div><small>START HERE</small><h4>Your reports, organized</h4><p>One timeline. Easy to find.</p></div></div><div class="answer-connector" aria-hidden="true"></div><div class="answer-step"><b>02</b><div><small>THE VISION</small><h4>Your next steps, connected</h4><p>Diagnostics, doctors &amp; follow-up.</p></div></div></div></div>
-    </section>
-
-    <section class="section features" id="features">
-      <div class="section-heading centered reveal"><span class="eyebrow">Core Phase 1</span><h2>Report management,<br><em>made human.</em></h2><p>Designed around how patients and doctors actually exchange healthcare information.</p></div>
-      <div class="bento-grid">
-        <article class="bento bento-primary reveal"><span class="tag">FOR USERS</span><h3>Upload. Organize.<br>Access anywhere.</h3><p>Add reports directly from your device and keep them arranged by date, report type, doctor, or family member.</p><div class="folder-ui"><span><i>BL</i><b>Blood Reports<small>4 files</small></b></span><span><i>UR</i><b>Urine Reports<small>3 files</small></b></span><span><i>XR</i><b>Radiology<small>5 files</small></b></span><span><i>EC</i><b>ECG Reports<small>2 files</small></b></span></div></article>
-        <article class="bento bento-search reveal"><span class="tag">SMART ORGANIZATION</span><h3>Find the right report in seconds.</h3><p>Search and filter your health records without going through folders, chats, or paper files.</p><div class="search-ui"><svg class="icon"><use href="assets/icons.svg#search"/></svg><span>Search reports, doctors...</span></div><div class="chips"><b>All</b><span>Lab</span><span>Prescription</span></div></article>
-        <article class="bento bento-doctor reveal"><span class="tag">DIAGNOSTIC CENTER UPLOAD</span><h3><span>Reports directly from</span><br><span>your diagnostic center.</span></h3><p>Diagnostic reports appear in your timeline with clear, verified source details.</p><div class="diagnostic-building"><img src="assets/diagnostic-center.png" alt="Illustrative modern diagnostic center building" width="1536" height="1024" loading="lazy"><div class="doctor-ui"><i class="diagnostic-avatar"><img src="assets/diagnostic-center.png" alt="Diagnostic center" width="40" height="40" loading="lazy"></i><span><b>Uploaded by Diagnostic Center</b><small>Verified Diagnostic Center · Just now</small></span><em><svg class="icon"><use href="assets/icons.svg#check"/></svg></em></div></div></article>
-        <article class="bento bento-wide reveal"><div><span class="tag">HEALTH REPORT TIMELINE</span><h3>Your health report timeline.</h3><p>See your health reports in chronological order. Find previous reports and compare results over time.</p></div><div class="timeline-ui"><span><b>Today</b>CBC Report</span><span><b>12 Jun</b>Blood Test Report</span><span><b>28 May</b>Chest X-Ray</span></div></article>
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a class="brand" href="#home"
+            ><img src="assets/dad-report-logo.png" alt="" width="52" height="52" /><span
+              ><strong>DAD Report</strong><small>Doctors At Door</small></span
+            ></a
+          >
+          <p>An app to organize, understand, and share your medical reports.</p>
+          <a class="footer-email" href="mailto:support@doctorsatdoor.com"
+            ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#mail" /></svg>
+            support@doctorsatdoor.com</a
+          >
+        </div>
+        <div class="footer-follow">
+          <h3>Follow Doctors At Door</h3>
+          <p>Product news and app updates.</p>
+          <div class="social-links">
+            <a
+              href="https://www.facebook.com/doctorsatdoor.offical/"
+              target="_blank"
+              rel="noopener"
+              aria-label="Follow Doctors At Door on Facebook"
+              ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#facebook" /></svg></a
+            ><a
+              href="https://www.instagram.com/doctorsatdoor/"
+              target="_blank"
+              rel="noopener"
+              aria-label="Follow Doctors At Door on Instagram"
+              ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#instagram" /></svg></a
+            ><a
+              href="https://www.youtube.com/@doctorsatdoor"
+              target="_blank"
+              rel="noopener"
+              aria-label="Follow Doctors At Door on YouTube"
+              ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#youtube" /></svg></a
+            ><a
+              href="https://x.com/doctors_at_door"
+              target="_blank"
+              rel="noopener"
+              aria-label="Follow Doctors At Door on X"
+              ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#x" /></svg></a
+            ><a
+              href="https://www.linkedin.com/company/doctors-at-door/"
+              target="_blank"
+              rel="noopener"
+              aria-label="Follow Doctors At Door on LinkedIn"
+              ><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#linkedin" /></svg
+            ></a>
+          </div>
+        </div>
       </div>
-    </section>
-
-    <section class="showcase section" aria-labelledby="showcase-title">
-      <div class="showcase-copy reveal"><span class="eyebrow">DAD Reports</span><h2 id="showcase-title">Your reports.<br>Clearer at a glance.</h2><p>Explore your health report timeline, AI-powered summaries, and diagnostic appointments in one app.</p><div class="showcase-tabs" aria-label="App screenshots"><button class="active" aria-pressed="true" data-showcase="history">Health history</button><button aria-pressed="false" data-showcase="summary">AI value summary</button><button aria-pressed="false" data-showcase="diagnostics">Diagnostics</button></div></div>
-      <div class="showcase-visual reveal">
-        <div class="app-orbit app-orbit-outer" aria-hidden="true"></div><div class="app-orbit app-orbit-inner" aria-hidden="true"></div><div class="app-orbit-glow" aria-hidden="true"></div>
-        <div class="device showcase-phone"><img class="showcase-screenshot" src="assets/app-screens/medical-reports.png" alt="DAD Reports app showing Your Medical Reports in chronological order" width="1179" height="2556" loading="lazy"></div>
-        <div class="app-float app-float-reports"><i><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#records"/></svg></i><span><b>Reports, organized</b><small>One clear timeline</small></span></div><div class="app-float app-float-ai"><i><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#activity"/></svg></i><span><b>AI-powered clarity</b><small>Understand your reports</small></span></div>
+      <div class="footer-bottom">
+        <span>© 2026 <b>D.A.D. CLINIK PRIVATE LIMITED</b>. All rights reserved.</span>
+        <nav aria-label="Legal">
+          <a href="/privacy">Privacy policy</a><a href="/terms">Terms and conditions</a
+          ><a href="https://www.doctorsatdoor.com/changelog" target="_blank" rel="noopener">Changelog</a
+          ><a href="https://www.doctorsatdoor.com/account-deletion" target="_blank" rel="noopener"
+            >Account deletion</a
+          ><a href="https://www.doctorsatdoor.com/data-security" target="_blank" rel="noopener"
+            >Data security</a
+          >
+        </nav>
+        <span><i class="pulse"></i> Now on Google Play · iPhone coming soon</span>
       </div>
-    </section>
-
-    <section class="process section" id="how">
-      <div class="section-heading reveal"><span class="eyebrow">Application Flow</span><h2>From upload to organized health history.</h2><p>No complicated setup. DAD Reports turns scattered medical documents into a healthcare timeline in four simple steps.</p></div>
-      <ol class="process-list">
-        <li class="reveal"><span>01</span><div><h3>Create your DAD profile</h3><p>Start your secure health space for yourself and your family.</p></div><i>Profile</i></li>
-        <li class="reveal"><span>02</span><div><h3>Upload any report</h3><p>Add a medical report, prescription, scan, or lab result from your device.</p></div><i>Upload</i></li>
-        <li class="reveal"><span>03</span><div><h3>Organize your records</h3><p>Group reports by person, category, doctor, and date for faster access.</p></div><i>Timeline</i></li>
-        <li class="reveal"><span>04</span><div><h3>Request follow-up with Doctor PING</h3><p>Use Doctor PING to share relevant reports and request doctor follow-up, with coordination support from DAD Admin.</p></div><i>Connect</i></li>
-      </ol>
-    </section>
-
-    <section class="doctor-section" id="doctors" aria-labelledby="doctor-title"><div class="doctor-image reveal"><img src="assets/dad-doctor-tablet.png" alt="Doctor reviewing DAD Reports on a tablet with a patient and family member during follow-up" width="1536" height="1024" loading="lazy"><div class="verified-card"><i><svg class="icon"><use href="assets/icons.svg#user-check"/></svg></i><span><b>Doctor follow-up</b><small>Your reports provide the context</small></span></div></div><div class="doctor-copy reveal"><span class="eyebrow">Doctor Follow-up</span><h2 id="doctor-title">Your reports.<br><em>Better follow-up.</em></h2><p>Share your reports through Doctor PING and request follow-up support. DAD Admin helps coordinate the next step.</p><ol class="followup-steps"><li><span>01</span>Share relevant reports</li><li><span>02</span>Send a Doctor PING</li><li><span>03</span>Coordinate your follow-up</li></ol><p class="followup-note">For doctor follow-up only. OPD consultations and appointment booking are not offered.</p><a class="button button-accent" href="#early-access">Join early access <svg class="icon"><use href="assets/icons.svg#arrow-right"/></svg></a></div></section>
-
-    <section class="vision section" id="vision"><div class="vision-copy reveal"><span class="eyebrow">Vision</span><h2>One Eco-system</h2><div class="value-row"><strong>Comfort</strong><i></i><strong>Priority</strong><i></i><strong>Convenience</strong></div><p>DAD is not just an Application. It is a Healthcare Super App built for real-world use that connects Patients, Doctors, Paramedics, Pharmacies, Diagnostics &amp; Labs in real time through One Digitally synced — Data Driven Platform.</p></div><div class="ecosystem reveal"><div class="ecosystem-core"><img src="assets/dad-primary-logo.png" alt="Doctors At Door logo" width="70" height="70"><div class="ecosystem-brand"><strong>Doctors At Door</strong><span class="platform-chip">Platform</span></div></div><div class="nodes live"><span>Patient</span><span>Doctor</span><span>Admin &amp; Super Admin</span><span>Diagnostic &amp; Lab</span><span>Clinic &amp; Hospital</span></div><div class="nodes future"><span>Pharmacy <b>V2</b></span><span>DAD Paramedic <b>V2</b></span><span>DAD AI Health Assistant <b>V3</b></span><span>DAD Marketplace <b>V3</b></span><span>Fitness &amp; Wellness <b>V4</b></span><span>Holistic Healthcare <b>V4</b></span><span>DAD Healthcare Community <b>V4</b></span></div><small>Solid nodes live in V1 · Dashed nodes are on the roadmap</small></div></section>
-
-    <section class="roadmap section" id="roadmap"><div class="section-heading reveal"><span class="eyebrow">Roadmap</span><h2><span>Healthcare Eco-system —</span> <em>One Platform</em></h2><p>DAD Reports is the first active layer of a much larger healthcare vision. Every phase expands the same connected platform—without losing the patient history, coordination, and trust built from day one.</p></div><div class="roadmap-grid">
-      <article class="active reveal"><span>LIVE — Q3 2026</span><b>PHASE 1</b><h3>Kanpur Launch</h3><p>Core Reports and PING ecosystem connecting Patients, Doctors, Admin, and Diagnostics coordination in one city.</p><ul><li>Patient Report System &amp; PING</li><li>Patient health records</li><li>Doctor report upload &amp; dashboard</li><li>Admin coordination layer</li><li>Diagnostics &amp; labs tie-in</li><li>Digital prescriptions</li><li>Clinic &amp; hospital referrals</li></ul></article>
-      <article class="reveal"><span>Q4 2026 — Q1 2027</span><b>PHASE 2</b><h3>Expanded Services</h3><p>Pharmacy integration and home sample collection added to the core ecosystem.</p><ul><li>Pharmacy coordination</li><li>Home sample collection</li><li>Multi-city expansion</li><li>Doctor earnings dashboard</li><li>Advanced analytics</li></ul></article>
-      <article class="reveal"><span>Q2 — Q3 2027</span><b>PHASE 3</b><h3>Full Ecosystem</h3><p>AI health assistant, DAD marketplace, and wellness professionals join the platform.</p><ul><li>AI Health Assistant</li><li>DAD Shop &amp; marketplace</li><li>Fitness &amp; wellness professionals</li><li>Mental health support</li><li>Preventive care programs</li><li>Insurance integrations</li></ul></article>
-      <article class="reveal"><span>2028 &amp; BEYOND</span><b>PHASE 4</b><h3>Pan-India Scale</h3><p>Full national rollout, government health scheme partnerships, and rural outreach.</p><ul><li>100+ city coverage</li><li>Government health scheme tie-ins</li><li>Rural healthcare outreach</li><li>B2B enterprise health plans</li><li>Global expansion</li><li>Research partnerships</li></ul></article>
-    </div></section>
-
-    <section class="security section" id="security"><div class="security-copy reveal"><span class="eyebrow">Your Data. Your Control.</span><h2>Built with healthcare trust at its core.</h2><p>Your medical reports are personal. DAD Reports is designed to keep access clear, sharing controlled, and every report connected to the right user.</p></div><div class="security-cards"><article class="reveal"><i><svg class="icon"><use href="assets/icons.svg#shield"/></svg></i><h3>Secure by design</h3><p>Protected access and responsible handling for personal health records.</p></article><article class="reveal"><i><svg class="icon"><use href="assets/icons.svg#share"/></svg></i><h3>You control sharing</h3><p>Choose when your reports are used and who can access them.</p></article><article class="reveal"><i><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m10 3 2.5 6.5L19 12l-6.5 2.5L10 21l-2.5-6.5L1 12l6.5-2.5L10 3Zm10-2 1.1 2.9L24 5l-2.9 1.1L20 9l-1.1-2.9L16 5l2.9-1.1L20 1Z" fill="currentColor" stroke="none"/></svg></i><h3>AI-powered summary</h3><p>Understand key findings in your reports with a clear, AI-powered summary.</p></article></div></section>
-
-    <section class="download section" id="download" aria-labelledby="download-title">
-      <div class="download-copy reveal"><span class="eyebrow">DAD REPORTS APP</span><h2 id="download-title">Your reports.<br><em>Always with you.</em></h2><p>A simpler way to upload, organize, and understand your health reports. One timeline, ready whenever you need it.</p>
-        <ul class="download-features"><li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#records"/></svg>Reports in one place</li><li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#activity"/></svg>AI-powered summaries</li></ul>
-        <a class="button button-accent" href="#early-access">Get launch updates <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#arrow-up-right"/></svg></a>
-        <div class="download-availability"><span>COMING SOON ON</span><div><span><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#android"/></svg>Android</span><span><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#apple"/></svg>iPhone</span></div><p>Join early access to hear when the app is available.</p></div>
-      </div>
-      <div class="download-device reveal"><div class="download-halo" aria-hidden="true"></div><div class="device iphone-home"><img src="assets/app-screens/home.png" alt="DAD Reports home screen on iPhone 16, with upload, organize and share options" width="1179" height="2556" loading="lazy"><span class="iphone-island" aria-hidden="true"></span></div><span class="download-preview-label">A LOOK INSIDE DAD REPORTS</span></div>
-    </section>
-
-    <section class="quote"><blockquote>“Healthcare should feel like having a knowledgeable friend who knows your history, coordinates your care, and is always available.”</blockquote><span>— DAD Founding Team</span></section>
-
-    <section class="faq section" id="faq"><div class="faq-intro reveal"><span class="eyebrow">Frequently Asked Questions</span><h2>Clear answers before you begin.</h2><p>DAD Reports is being built to make health information simpler, safer, and more useful throughout your care journey.</p><a href="/survey">Help shape DAD Reports <svg class="icon"><use href="assets/icons.svg#arrow-up-right"/></svg></a></div><div class="faq-list">
-      <article class="faq-item open reveal"><h3><button type="button" aria-expanded="true"><span>What is DAD Reports?</span><i><svg class="icon"><use href="assets/icons.svg#minus"/></svg></i></button></h3><div><p>DAD Reports is the first active layer of the Doctors At Door ecosystem. It helps users upload, organize, understand, and carry their medical reports into connected care.</p></div></article>
-      <article class="faq-item reveal"><h3><button type="button" aria-expanded="false"><span>Can doctors upload reports to my timeline?</span><i><svg class="icon"><use href="assets/icons.svg#plus"/></svg></i></button></h3><div><p>Yes. Reports and prescriptions uploaded through a verified DAD Doctor are clearly marked with their source and added to the correct health timeline.</p></div></article>
-      <article class="faq-item reveal"><h3><button type="button" aria-expanded="false"><span>Can I manage reports for my family?</span><i><svg class="icon"><use href="assets/icons.svg#plus"/></svg></i></button></h3><div><p>The experience is designed around family healthcare, with organized profiles so records remain connected to the right person.</p></div></article>
-      <article class="faq-item reveal"><h3><button type="button" aria-expanded="false"><span>Does an AI summary replace medical advice?</span><i><svg class="icon"><use href="assets/icons.svg#plus"/></svg></i></button></h3><div><p>No. Summaries make dense information easier to understand, but diagnosis and treatment decisions must remain with a qualified healthcare professional.</p></div></article>
-      <article class="faq-item reveal"><h3><button type="button" aria-expanded="false"><span>How does Doctor PING connect with reports?</span><i><svg class="icon"><use href="assets/icons.svg#plus"/></svg></i></button></h3><div><p>Doctor PING lets you share relevant reports when requesting doctor follow-up. DAD Admin helps coordinate the request. It is not an OPD consultation or OPD appointment booking service.</p></div></article>
-      <article class="faq-item reveal"><h3><button type="button" aria-expanded="false"><span>Is DAD Reports available now?</span><i><svg class="icon"><use href="assets/icons.svg#plus"/></svg></i></button></h3><div><p>DAD Reports is entering Phase 1 early access. You can join the list or complete the healthcare survey to help shape the first public experience.</p></div></article>
-    </div></section>
-
-    <section class="early-access" id="early-access"><div class="access-copy reveal"><span class="eyebrow access-badge">EARLY ACCESS <span>PHASE 1</span></span><h2>Your reports.<br><em>A better beginning.</em></h2><p>Be among the first to organize your health reports in one clear timeline. Join the DAD Reports early-access list.</p><ul class="access-benefits"><li><i><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#records"/></svg></i><div><strong>Get a head start</strong><span>Priority access to the DAD Report System.</span></div></li><li><i><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#bell"/></svg></i><div><strong>Stay in the loop</strong><span>Launch updates and first-phase invitations.</span></div></li><li><i><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"/></svg></i><div><strong>Free to join</strong><span>No payment needed for early access.</span></div></li></ul></div><form class="access-form reveal" data-success="You're on the DAD Reports early-access list."><h3>Get early access</h3><p>Be among the first users of DAD Reports.</p><label>Full Name *<input required name="name" autocomplete="name" placeholder="Your full name"></label><label>Phone Number *<input required type="tel" name="phone" autocomplete="tel" placeholder="WhatsApp number"></label><div class="form-row"><label>Email Address<input type="email" name="email" autocomplete="email" placeholder="you@email.com"></label><label>City<input name="city" autocomplete="address-level2" placeholder="Your city"></label></div><button class="button button-accent" type="submit">Join DAD Reports <svg class="icon"><use href="assets/icons.svg#arrow-up-right"/></svg></button><small>By joining, you agree to receive product updates from Doctors At Door.</small><p class="form-message" aria-live="polite"></p></form></section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="footer-actions">
-      <a class="footer-action survey-action" href="/survey"><i><svg class="icon"><use href="assets/icons.svg#clipboard"/></svg></i><span><small>Help shape DAD Reports</small><strong>Take the healthcare survey</strong></span><svg class="icon action-arrow"><use href="assets/icons.svg#arrow-up-right"/></svg></a>
-      <div class="footer-action app-action"><i><svg class="icon"><use href="assets/icons.svg#android"/></svg></i><span><small>Android application</small><strong>Coming Soon</strong></span></div>
-      <div class="footer-action app-action"><i><svg class="icon"><use href="assets/icons.svg#apple"/></svg></i><span><small>iPhone application</small><strong>Coming Soon</strong></span></div>
-    </div>
-    <div class="footer-top">
-      <div class="footer-brand"><a class="brand" href="#home"><img src="assets/dad-report-logo.png" alt="" width="52" height="52"><span><strong>DAD Reports</strong><small>Doctors At Door</small></span></a><p>Your health reports, organized and connected to care.</p><a class="footer-email" href="mailto:support@doctorsatdoor.com"><svg class="icon"><use href="assets/icons.svg#mail"/></svg> support@doctorsatdoor.com</a></div>
-      <div class="footer-follow"><h3>Follow Doctors At Door</h3><p>Updates on the product, first phase, and connected healthcare.</p><div class="social-links"><a href="https://www.facebook.com/doctorsatdoor.offical/" target="_blank" rel="noopener" aria-label="Follow Doctors At Door on Facebook"><svg class="icon"><use href="assets/icons.svg#facebook"/></svg></a><a href="https://www.instagram.com/doctorsatdoor/" target="_blank" rel="noopener" aria-label="Follow Doctors At Door on Instagram"><svg class="icon"><use href="assets/icons.svg#instagram"/></svg></a><a href="https://www.youtube.com/@doctorsatdoor" target="_blank" rel="noopener" aria-label="Follow Doctors At Door on YouTube"><svg class="icon"><use href="assets/icons.svg#youtube"/></svg></a></div></div>
-    </div>
-    <div class="footer-bottom"><span>© 2026 <b>D.A.D. CLINIK PRIVATE LIMITED</b>. All rights reserved.</span><nav aria-label="Legal"><a href="/privacy">Privacy Policy</a><a href="/terms">Terms &amp; Conditions</a></nav><span><i class="pulse"></i> Phase 1 · DAD Report System</span></div>
-  </footer>
-  <script src="app.js"></script>
-</body>
+    </footer>
+    <script src="app.js"></script>
+  </body>
 </html>

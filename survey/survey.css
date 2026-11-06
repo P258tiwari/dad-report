@@ -1,16 +1,15 @@
 .survey-redesign {
   min-height: 100vh;
-  background:
-    radial-gradient(circle at 18% 28%, rgba(215, 143, 189, .18), transparent 28%),
+  background: radial-gradient(circle at 18% 28%, rgba(215, 143, 189, 0.18), transparent 28%),
     linear-gradient(135deg, #fffdfa, #faf2f7 62%, #f5e7f1);
 }
 
 .survey-redesign::before {
-  content: "";
+  content: '';
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background-image: radial-gradient(rgba(74, 38, 79, .08) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(74, 38, 79, 0.08) 1px, transparent 1px);
   background-size: 24px 24px;
   mask-image: linear-gradient(90deg, #000, transparent 70%);
 }
@@ -40,7 +39,7 @@
   z-index: 1;
   width: min(calc(100% - 40px), 1340px);
   display: grid;
-  grid-template-columns: minmax(340px, .82fr) minmax(560px, 1.18fr);
+  grid-template-columns: minmax(340px, 0.82fr) minmax(560px, 1.18fr);
   gap: clamp(32px, 5vw, 76px);
   margin: 36px auto 0;
   padding-bottom: 100px;
@@ -57,20 +56,22 @@
   border-radius: 32px;
   background: linear-gradient(145deg, #24133f, #5b2860);
   color: #fff;
-  box-shadow: 0 28px 80px rgba(48, 23, 60, .2);
+  box-shadow: 0 28px 80px rgba(48, 23, 60, 0.2);
   overflow: hidden;
 }
 
 .survey-intro::after {
-  content: "";
+  content: '';
   position: absolute;
   right: -120px;
   bottom: -120px;
   width: 360px;
   height: 360px;
-  border: 1px solid rgba(255, 255, 255, .12);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 50%;
-  box-shadow: 0 0 0 60px rgba(255, 255, 255, .025), 0 0 0 120px rgba(255, 255, 255, .02);
+  box-shadow:
+    0 0 0 60px rgba(255, 255, 255, 0.025),
+    0 0 0 120px rgba(255, 255, 255, 0.02);
 }
 
 .survey-intro > * {
@@ -88,7 +89,7 @@
   color: #fff;
   font-size: clamp(2.35rem, 3.5vw, 3.8rem);
   line-height: 1.08;
-  letter-spacing: -.04em;
+  letter-spacing: -0.04em;
 }
 
 .survey-intro h1 em {
@@ -99,7 +100,7 @@
 .survey-intro-copy > p {
   max-width: 560px;
   color: #d2c7d5;
-  font-size: .98rem;
+  font-size: 0.98rem;
 }
 
 .survey-trust {
@@ -113,7 +114,7 @@
   align-items: center;
   gap: 11px;
   color: #ded5e1;
-  font-size: .78rem;
+  font-size: 0.78rem;
 }
 
 .survey-trust i {
@@ -122,7 +123,7 @@
   display: grid;
   place-items: center;
   border-radius: 10px;
-  background: rgba(255, 255, 255, .09);
+  background: rgba(255, 255, 255, 0.09);
   color: var(--lime);
   font-style: normal;
 }
@@ -151,14 +152,14 @@
 
 .survey-brand-card small {
   color: var(--pink);
-  font-size: .58rem;
-  letter-spacing: .13em;
+  font-size: 0.58rem;
+  letter-spacing: 0.13em;
 }
 
 .survey-brand-card strong {
   max-width: 260px;
-  font-family: "Manrope", Arial, sans-serif;
-  font-size: .78rem;
+  font-family: 'Manrope', Arial, sans-serif;
+  font-size: 0.78rem;
 }
 
 .survey-redesign .survey-content {
@@ -176,17 +177,17 @@
   gap: 24px;
   margin-bottom: 42px;
   padding: 15px 18px;
-  border: 1px solid rgba(58, 23, 79, .1);
+  border: 1px solid rgba(58, 23, 79, 0.1);
   border-radius: 16px;
-  background: rgba(255, 253, 251, .86);
-  box-shadow: 0 12px 35px rgba(35, 18, 48, .07);
+  background: rgba(255, 253, 251, 0.86);
+  box-shadow: 0 12px 35px rgba(35, 18, 48, 0.07);
   backdrop-filter: blur(18px);
 }
 
 .survey-topline > span {
-  font-size: .68rem;
+  font-size: 0.68rem;
   font-weight: 800;
-  letter-spacing: .1em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--purple-2);
 }
@@ -205,7 +206,7 @@
   height: 100%;
   border-radius: inherit;
   background: linear-gradient(90deg, var(--purple-2), var(--pink));
-  transition: width .35s ease;
+  transition: width 0.35s ease;
 }
 
 .survey-redesign .survey-form {
@@ -221,14 +222,17 @@
 
 .survey-redesign .survey-step.active {
   display: block;
-  animation: survey-in .4s ease;
+  animation: survey-in 0.4s ease;
 }
 
 .survey-redesign .survey-step > legend {
   max-width: 700px;
   padding: 0;
-  font: 800 clamp(2rem, 3.2vw, 3.25rem)/1.12 "Manrope", Arial, sans-serif;
-  letter-spacing: -.045em;
+  font:
+    800 clamp(2rem, 3.2vw, 3.25rem) / 1.12 'Manrope',
+    Arial,
+    sans-serif;
+  letter-spacing: -0.045em;
   color: var(--ink);
 }
 
@@ -245,18 +249,18 @@
   padding: clamp(22px, 4vw, 34px);
   border: 1px solid var(--line);
   border-radius: 26px;
-  background: rgba(255, 255, 255, .82);
-  box-shadow: 0 18px 50px rgba(46, 23, 59, .06);
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 18px 50px rgba(46, 23, 59, 0.06);
   backdrop-filter: blur(12px);
 }
 
 .survey-redesign .details-grid > label {
   color: var(--ink);
-  font-size: .72rem;
+  font-size: 0.72rem;
   font-weight: 800;
 }
 
-.survey-redesign .details-grid input:not([type=radio]) {
+.survey-redesign .details-grid input:not([type='radio']) {
   width: 100%;
   height: 52px;
   margin-top: 7px;
@@ -265,12 +269,12 @@
   border-radius: 12px;
   background: #fff;
   outline: 0;
-  transition: .2s;
+  transition: 0.2s;
 }
 
-.survey-redesign .details-grid input:not([type=radio]):focus {
+.survey-redesign .details-grid input:not([type='radio']):focus {
   border-color: var(--purple-2);
-  box-shadow: 0 0 0 4px rgba(111, 47, 114, .1);
+  box-shadow: 0 0 0 4px rgba(111, 47, 114, 0.1);
 }
 
 .survey-redesign .full-field {
@@ -294,10 +298,10 @@
   border-radius: 999px;
   background: #fff;
   color: var(--ink-2);
-  font-size: .72rem;
+  font-size: 0.72rem;
   font-weight: 600;
   cursor: pointer;
-  transition: .2s;
+  transition: 0.2s;
 }
 
 .survey-redesign .options label:has(input:checked) {
@@ -310,7 +314,7 @@
   accent-color: var(--purple-2);
 }
 
-.survey-redesign .options input[type="radio"] {
+.survey-redesign .options input[type='radio'] {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -319,7 +323,7 @@
   pointer-events: none;
 }
 
-.survey-redesign .options label:has(input[type="radio"]:focus-visible) {
+.survey-redesign .options label:has(input[type='radio']:focus-visible) {
   outline: 3px solid var(--lime);
   outline-offset: 3px;
 }
@@ -335,23 +339,23 @@
   padding: clamp(20px, 3vw, 28px);
   border: 1px solid var(--line);
   border-radius: 20px;
-  background: rgba(255, 255, 255, .84);
-  box-shadow: 0 12px 35px rgba(46, 23, 59, .045);
+  background: rgba(255, 255, 255, 0.84);
+  box-shadow: 0 12px 35px rgba(46, 23, 59, 0.045);
 }
 
 .survey-redesign .question-index {
   display: block;
   margin-bottom: 8px;
   color: var(--purple-2);
-  font-size: .6rem;
+  font-size: 0.6rem;
   font-weight: 800;
-  letter-spacing: .12em;
+  letter-spacing: 0.12em;
 }
 
 .survey-redesign .question-title {
   display: block;
   color: var(--ink);
-  font-family: "Manrope", Arial, sans-serif;
+  font-family: 'Manrope', Arial, sans-serif;
   font-size: 1rem;
   font-weight: 700;
   line-height: 1.45;
@@ -396,8 +400,8 @@
   padding: 10px;
   border: 1px solid var(--line);
   border-radius: 18px;
-  background: rgba(255, 253, 251, .9);
-  box-shadow: 0 16px 45px rgba(35, 18, 48, .12);
+  background: rgba(255, 253, 251, 0.9);
+  box-shadow: 0 16px 45px rgba(35, 18, 48, 0.12);
   backdrop-filter: blur(16px);
 }
 
@@ -444,15 +448,21 @@
   min-height: 50px;
   padding-inline: 22px;
   border-radius: 13px;
-  font-family: "Manrope", Arial, sans-serif;
-  font-size: .76rem;
+  font-family: 'Manrope', Arial, sans-serif;
+  font-size: 0.76rem;
   font-weight: 800;
-  letter-spacing: -.01em;
+  letter-spacing: -0.01em;
 }
 
 @keyframes survey-in {
-  from { opacity: 0; transform: translateY(14px); }
-  to { opacity: 1; transform: none; }
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 @media (max-width: 980px) {
@@ -486,7 +496,7 @@
   .survey-redesign .survey-header .button {
     min-height: 42px;
     padding-inline: 14px;
-    font-size: .68rem;
+    font-size: 0.68rem;
   }
 
   .survey-layout {
