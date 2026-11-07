@@ -244,5 +244,5 @@ export const server = createServer(async (req, res) => {
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   // Bind to localhost only: in production nginx is the only public entry point.
-  server.listen(PORT, '127.0.0.1', () => console.log(`DAD Report site running at http://localhost:${PORT}`));
+  server.listen(PORT, '127.0.0.1', () => console.log(`DAD Reports site running at http://localhost:${PORT}`));
 }

@@ -1,5 +1,5 @@
 /*
-  DAD Report website styles.
+  DAD Reports website styles.
   Base styles come first; the commented sections below refine individual parts of the page.
   Later sections intentionally override earlier ones, so keep new rules near the section they change.
 */
@@ -258,7 +258,7 @@ em {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.68rem;
+  font-size: 0.85rem;
   font-weight: 800;
   letter-spacing: 0.13em;
   text-transform: uppercase;
@@ -494,33 +494,13 @@ em {
   color: var(--ink-2);
 }
 
-.manifesto {
-  display: grid;
-}
-
-.manifesto > p {
-  font-family: 'Manrope';
-  letter-spacing: -0.05em;
-  margin: 0;
-}
-
-.manifesto > div > p,
-.section-heading > p {
-  max-width: 650px;
-  color: var(--ink-2);
-}
-
 .section-heading {
-  max-width: 850px;
+  max-width: 1280px;
   margin-bottom: 60px;
 }
 
 .section-heading.centered {
   text-align: center;
-  margin-inline: auto;
-}
-
-.section-heading.centered p {
   margin-inline: auto;
 }
 
@@ -722,44 +702,6 @@ em {
   color: var(--ink-2);
 }
 
-.security {
-  display: grid;
-}
-
-.security-copy p {
-  color: var(--ink-2);
-}
-
-.security-cards {
-  display: grid;
-}
-
-.security-cards article {
-  border: 1px solid var(--line);
-  background: #fff;
-  container-type: inline-size;
-}
-
-.security-cards i {
-  width: 50px;
-  height: 50px;
-  display: grid;
-  place-items: center;
-  border-radius: 14px;
-  background: var(--pink-soft);
-  font-style: normal;
-  font-size: 1.2rem;
-}
-
-.security-cards h3 {
-  margin-top: 80px;
-  white-space: normal;
-}
-
-.security-cards p {
-  color: var(--ink-2);
-}
-
 .download {
   width: min(calc(100% - 48px), var(--max));
   display: grid;
@@ -773,11 +715,6 @@ em {
 
 .download-copy h2 {
   color: #fff;
-}
-
-.download-copy p {
-  max-width: 530px;
-  color: #d6cad9;
 }
 
 .download-device {
@@ -797,10 +734,6 @@ em {
   position: sticky;
   top: 120px;
   align-self: start;
-}
-
-.faq-intro p {
-  color: var(--ink-2);
 }
 
 .faq-intro a {
@@ -1246,7 +1179,6 @@ em {
     border-top: 1px solid var(--line);
   }
 
-  .manifesto,
   .process,
   .vision,
   .faq,
@@ -1259,14 +1191,6 @@ em {
   .faq-intro {
     position: relative;
     top: auto;
-  }
-
-  .download-copy p {
-    margin-inline: auto;
-  }
-
-  .download .store-row {
-    justify-content: center;
   }
 
   .download-device {
@@ -1495,11 +1419,6 @@ h2 {
   height: 17px;
 }
 
-.security-cards i .icon {
-  width: 24px;
-  height: 24px;
-}
-
 .faq-item button i .icon {
   width: 16px;
   height: 16px;
@@ -1528,22 +1447,6 @@ h2 {
 
 .device-main {
   height: 560px;
-}
-
-.manifesto {
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.72fr);
-  gap: clamp(55px, 8vw, 110px);
-  align-items: center;
-  padding-block: 100px;
-}
-
-.manifesto > p {
-  max-width: 780px;
-  line-height: 1.18;
-}
-
-.manifesto > div {
-  max-width: 510px;
 }
 
 .process {
@@ -1593,10 +1496,6 @@ h2 {
     height: 590px;
   }
 
-  .manifesto {
-    padding-block: 82px;
-  }
-
   .process-list li:nth-child(even) {
     transform: none;
   }
@@ -1609,10 +1508,6 @@ h2 {
 @media (max-width: 650px) {
   .hero-stage {
     height: 540px;
-  }
-
-  .manifesto {
-    padding-block: 72px;
   }
 
   .process-list li {
@@ -1701,26 +1596,6 @@ h2 {
 
   .impact .impact-copy strong {
     font-size: 0.92rem;
-  }
-}
-
-.manifesto > p {
-  font-size: clamp(2.2rem, 3vw, 3.35rem);
-}
-
-.manifesto-line {
-  white-space: nowrap;
-}
-
-@media (max-width: 900px) {
-  .manifesto-line {
-    white-space: normal;
-  }
-}
-
-@media (max-width: 650px) {
-  .manifesto > p {
-    font-size: clamp(2.05rem, 9vw, 2.7rem);
   }
 }
 
@@ -2196,106 +2071,6 @@ h2 {
   margin-right: 0;
 }
 
-/* Compact trust section with a full-width introduction and readable cards. */
-
-.security {
-  grid-template-columns: 1fr;
-  gap: 32px;
-}
-
-.security-copy {
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  column-gap: 64px;
-  align-items: end;
-}
-
-.security-copy > .eyebrow {
-  grid-column: 1/-1;
-  margin-bottom: 16px;
-}
-
-.security-copy h2 {
-  margin: 0;
-  font-size: clamp(2rem, 3.2vw, 3rem);
-  line-height: 1.15;
-  max-width: 620px;
-}
-
-.security-copy > p {
-  margin: 0;
-  max-width: 570px;
-  font-size: 0.95rem;
-  line-height: 1.7;
-}
-
-.security-cards {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-  align-items: start;
-}
-
-.security-cards article {
-  min-width: 0;
-  min-height: 0;
-  height: 100%;
-  padding: 28px;
-  border-radius: 22px;
-}
-
-.security-cards h3 {
-  margin: 24px 0 12px;
-  font-size: clamp(1.1rem, 7.4cqw, 1.45rem);
-  letter-spacing: -0.035em;
-  line-height: 1.3;
-}
-
-.security-cards p {
-  margin: 0;
-  font-size: 0.9rem;
-  line-height: 1.65;
-  max-width: 35ch;
-}
-
-@media (max-width: 900px) {
-  .security-copy {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
-  .security-copy > .eyebrow {
-    margin: 0;
-  }
-
-  .security-cards {
-    gap: 12px;
-  }
-
-  .security-cards article {
-    padding: 22px 18px;
-  }
-
-  .security-cards h3 {
-    font-size: clamp(0.9rem, 7.4cqw, 1.3rem);
-  }
-}
-
-@media (max-width: 650px) {
-  .security-cards {
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-
-  .security-cards article {
-    padding: 24px;
-  }
-
-  .security-cards h3 {
-    margin-top: 20px;
-    font-size: clamp(1.1rem, 7.4cqw, 1.4rem);
-  }
-}
-
 /* App launch panel: clear action, restrained platform labels, full phone preview. */
 
 .download {
@@ -2325,14 +2100,6 @@ h2 {
   color: #eedcf1;
 }
 
-.download-copy > p {
-  font-size: 1rem;
-  line-height: 1.75;
-  max-width: 460px;
-  margin: 0 0 24px;
-  color: #d5c6dd;
-}
-
 .download-copy > .eyebrow {
   margin-bottom: 22px;
 }
@@ -2360,69 +2127,21 @@ h2 {
   color: var(--lime);
 }
 
-.download-availability {
-  margin-top: 28px;
-  padding-top: 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.13);
-  max-width: 460px;
-}
-
-.download-availability > span {
-  font-size: 0.58rem;
-  letter-spacing: 0.15em;
-  font-weight: 800;
-  color: #bca8c8;
-}
-
-.download-availability > div {
-  display: flex;
-  gap: 24px;
-  margin-top: 12px;
-}
-
-.download-availability > div > span {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: #fff;
-}
-
-.download-availability .icon {
-  width: 19px;
-  height: 19px;
-}
-
-.download-availability p {
-  font-size: 0.72rem;
-  color: #c4b2cf;
-  margin: 12px 0 0;
-}
-
 .download-device {
   margin: 0;
   min-width: 0;
   padding: 12px 0;
-  gap: 24px;
 }
 
 .download-halo {
   position: absolute;
   z-index: -1;
-  width: 390px;
-  height: 390px;
+  width: 320px;
+  height: 320px;
   max-width: 110%;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 50%;
   background: radial-gradient(circle, rgba(215, 143, 189, 0.18), transparent 70%);
-}
-
-.download-preview-label {
-  font-size: 0.55rem;
-  letter-spacing: 0.19em;
-  color: #cbb7d5;
-  text-align: center;
 }
 
 @media (max-width: 900px) {
@@ -2454,25 +2173,13 @@ h2 {
     font-size: clamp(2.2rem, 9.6vw, 3rem);
   }
 
-  .download-copy > p {
-    font-size: 0.92rem;
-  }
-
-  .download-copy > .button {
-    width: 100%;
-  }
-
   .download-device {
     margin: 0;
   }
 
   .download-halo {
-    width: 300px;
-    height: 300px;
-  }
-
-  .download-availability p {
-    margin-left: 0;
+    width: 260px;
+    height: 260px;
   }
 
   .download-features {
@@ -2667,7 +2374,7 @@ h2 {
   align-items: center;
   gap: 14px;
   margin-bottom: 24px;
-  font-size: 0.62rem;
+  font-size: 0.85rem;
   letter-spacing: 0.14em;
   color: var(--lime);
 }
@@ -2914,29 +2621,9 @@ h2 {
   color: var(--ink-2);
 }
 
-.ps-arrow {
-  position: relative;
-  z-index: 1;
-  width: 38px;
-  height: 38px;
-  margin: -19px 0 -19px 26px;
-  display: grid;
-  place-items: center;
-  border: 3px solid #fff;
-  border-radius: 50%;
-  background: var(--lime);
-  color: var(--purple);
-}
-
-.ps-arrow .icon {
-  width: 16px;
-  height: 16px;
-  transform: rotate(90deg);
-}
-
 .ps-solution {
   flex: 1;
-  padding: 32px 26px 26px;
+  padding: 26px;
   background: var(--purple);
   color: #fff;
 }
@@ -2971,179 +2658,7 @@ h2 {
   }
 
   .ps-solution {
-    padding: 30px 22px 22px;
-  }
-
-  .ps-arrow {
-    margin-left: 22px;
-  }
-}
-
-/* Privacy cards: allow longer titles to wrap. */
-
-.security-copy a {
-  color: var(--purple-2);
-  font-weight: 800;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-/* Stack the manifesto on tablets and phones (an earlier rule kept two columns at every width). */
-
-@media (max-width: 900px) {
-  .manifesto {
-    grid-template-columns: 1fr;
-    gap: 28px;
-  }
-}
-
-/* Features: full-width band with three feature groups. */
-
-.features {
-  width: 100%;
-  max-width: none;
-  padding-inline: max(24px, calc((100vw - var(--max)) / 2));
-  background: linear-gradient(180deg, var(--cream), var(--pink-soft) 45%, var(--cream));
-}
-
-.fx-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-}
-
-.fx-group {
-  display: flex;
-  flex-direction: column;
-  padding: 32px;
-  border: 1px solid var(--line);
-  border-radius: 28px;
-  background: #fff;
-  box-shadow: 0 15px 45px rgba(46, 23, 59, 0.06);
-}
-
-.fx-group header {
-  padding-bottom: 22px;
-  border-bottom: 1px solid var(--line);
-}
-
-.fx-kicker {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 0.65rem;
-  font-weight: 800;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  color: var(--purple-2);
-}
-
-.fx-kicker b {
-  font-family: 'Manrope';
-  font-size: 0.8rem;
-  letter-spacing: 0;
-  color: var(--pink);
-}
-
-.fx-group h3 {
-  margin: 14px 0 0;
-  font-size: clamp(1.35rem, 2vw, 1.7rem);
-  letter-spacing: -0.04em;
-  line-height: 1.15;
-}
-
-.fx-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.fx-list li {
-  display: grid;
-  grid-template-columns: 42px minmax(0, 1fr);
-  gap: 14px;
-  padding: 20px 0;
-  border-bottom: 1px solid var(--line);
-}
-
-.fx-list li:last-child {
-  padding-bottom: 0;
-  border-bottom: 0;
-}
-
-.fx-list i {
-  width: 42px;
-  height: 42px;
-  display: grid;
-  place-items: center;
-  border-radius: 12px;
-  background: var(--pink-soft);
-  color: var(--purple-2);
-}
-
-.fx-list .icon {
-  width: 19px;
-  height: 19px;
-}
-
-.fx-list strong {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-  font-family: 'Manrope';
-  font-size: 1rem;
-  letter-spacing: -0.02em;
-}
-
-.fx-list p {
-  margin: 4px 0 0;
-  font-size: 0.86rem;
-  line-height: 1.55;
-  color: var(--ink-2);
-}
-
-.fx-group-dark {
-  border-color: var(--purple);
-  background: radial-gradient(ellipse at 100% 0, rgba(215, 143, 189, 0.22), transparent 55%), var(--purple);
-  color: #fff;
-  box-shadow: 0 24px 60px rgba(58, 23, 79, 0.25);
-}
-
-.fx-group-dark header,
-.fx-group-dark .fx-list li {
-  border-color: rgba(255, 255, 255, 0.13);
-}
-
-.fx-group-dark .fx-kicker {
-  color: var(--lime);
-}
-
-.fx-group-dark .fx-list i {
-  background: rgba(217, 242, 106, 0.12);
-  color: var(--lime);
-}
-
-.fx-group-dark .fx-list p {
-  color: #d3c8d6;
-}
-
-@media (max-width: 1000px) {
-  .fx-grid {
-    grid-template-columns: 1fr;
-    max-width: 640px;
-    margin-inline: auto;
-  }
-}
-
-@media (max-width: 650px) {
-  .fx-group {
-    padding: 24px;
-    border-radius: 24px;
-  }
-
-  .fx-list li {
-    padding: 18px 0;
+    padding: 22px;
   }
 }
 
@@ -3169,22 +2684,6 @@ h2 {
 
 .footer-action.app-live:hover {
   background: rgba(255, 255, 255, 0.08);
-}
-
-.download-availability > div > a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--lime);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-.download-availability > div > span.soon {
-  color: #cfc3d2;
-  font-weight: 600;
 }
 
 .faq-item p a {
@@ -3264,12 +2763,12 @@ h2 {
 }
 
 .download-device .download-phone {
-  width: 270px;
+  width: 220px;
 }
 
 @media (max-width: 900px) {
   .download-device .download-phone {
-    width: 245px;
+    width: 210px;
   }
 }
 
@@ -3279,7 +2778,7 @@ h2 {
   }
 
   .download-device .download-phone {
-    width: 240px;
+    width: 200px;
   }
 }
 
@@ -3332,18 +2831,6 @@ h2 {
   font-size: 1.45rem;
   letter-spacing: -0.035em;
   line-height: 1.2;
-}
-
-.screen-card p {
-  min-height: 3.2em;
-  margin: 0;
-  font-size: 0.9rem;
-  line-height: 1.6;
-  color: var(--ink-2);
-}
-
-.screen-card-dark p {
-  color: #d3c8d6;
 }
 
 .screen-card .phone {
@@ -3425,10 +2912,6 @@ h2 {
     font-size: 0.72rem;
   }
 
-  .download-preview-label {
-    font-size: 0.65rem;
-  }
-
   .verified-card small {
     font-size: 0.7rem;
   }
@@ -3469,28 +2952,33 @@ h2 {
   gap: 12px;
 }
 
-.hero .store-button {
+.hero .store-button,
+.download .store-button {
   height: 62px;
   padding: 8px 22px 8px 11px;
   border-radius: 16px;
 }
 
-.hero .store-icon {
+.hero .store-icon,
+.download .store-icon {
   width: 40px;
   height: 40px;
   border-radius: 11px;
 }
 
-.hero .store-icon .icon {
+.hero .store-icon .icon,
+.download .store-icon .icon {
   width: 21px;
   height: 21px;
 }
 
-.hero .store-button small {
+.hero .store-button small,
+.download .store-button small {
   font-size: 0.68rem;
 }
 
-.hero .store-button strong {
+.hero .store-button strong,
+.download .store-button strong {
   font-size: 1rem;
 }
 
@@ -3808,4 +3296,212 @@ h2 {
   .hero h1 {
     font-size: clamp(2.75rem, 4.45vw, 3.9rem);
   }
+}
+
+/* Phones: the long hero label stays on one line; other section labels keep the larger size. */
+@media (max-width: 650px) {
+  .hero .eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+  }
+}
+
+/* "How it works": the grid gap already spaces the heading from the steps. */
+.process .section-heading {
+  margin-bottom: 0;
+}
+
+/* Problem/solution cards: cards in a row share row heights, so the purple halves line up even with different text lengths. */
+.ps-card {
+  position: relative;
+  display: grid;
+  grid-row: span 2;
+  grid-template-rows: subgrid;
+  row-gap: 0;
+}
+
+/* Download panel: feature pills and the same store badges as the hero. */
+.download-features {
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.download-features li {
+  gap: 10px;
+  padding: 6px 16px 6px 6px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.download-features i {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(217, 242, 106, 0.14);
+}
+
+.download-features .icon {
+  width: 16px;
+  height: 16px;
+}
+
+.download .store-row {
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 12px;
+  margin: 0;
+}
+
+.download .store-live {
+  border-color: var(--lime);
+  background: var(--lime);
+  color: var(--ink);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.25);
+}
+
+.download .store-live .store-icon {
+  background: var(--ink);
+  color: var(--lime);
+}
+
+.download .store-live small {
+  color: #4a3d55;
+}
+
+.download .store-soon {
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.download .store-soon .store-icon {
+  background: rgba(255, 255, 255, 0.1);
+  color: #e6dcea;
+}
+
+.download .store-soon small {
+  color: #bca8c8;
+}
+
+.download .store-soon strong {
+  color: #efe7f2;
+}
+
+@media (max-width: 900px) {
+  .download-features {
+    align-items: flex-start;
+  }
+}
+
+/* FAQ (desktop and tablet): smaller questions with comfortable line height. Phones have their own sizes above. */
+@media (min-width: 651px) {
+  .faq-item h3 {
+    font-size: 1.2rem;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+  }
+
+  .faq-item button {
+    gap: 20px;
+    padding: 22px 0;
+  }
+
+  .faq-item > div > p {
+    font-size: 0.98rem;
+    line-height: 1.7;
+  }
+}
+
+/* Download panel: more room between the heading and the feature pills. */
+.download-copy h2 {
+  margin-bottom: 40px;
+}
+
+@media (max-width: 650px) {
+  .download-copy h2 {
+    margin-bottom: 30px;
+  }
+}
+
+/* Doctor follow-up (phones): keep "Send a PING request." on one line. */
+@media (max-width: 650px) {
+  .doctor-copy h2 {
+    font-size: clamp(1.55rem, 8vw, 2.25rem);
+  }
+}
+
+/* Card headings: balanced lines (no single word left alone on a line). */
+.screen-card h3,
+.ps-card h3 {
+  text-wrap: balance;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+/* Menu: links never wrap; tighter spacing just above the phone-menu breakpoint. */
+.main-nav a {
+  white-space: nowrap;
+}
+
+@media (min-width: 901px) and (max-width: 1000px) {
+  .site-header {
+    gap: 16px;
+  }
+
+  .main-nav a {
+    padding: 7px 7px;
+  }
+}
+
+/* Problem/solution cards: red tint and a cross on the problem, a lime tick on the solution. */
+.ps-problem,
+.ps-solution {
+  position: relative;
+}
+
+.ps-problem {
+  background: linear-gradient(180deg, #fff0f2 0%, #fff 65%);
+}
+
+.ps-problem .ps-label {
+  color: #c23b51;
+}
+
+.ps-problem::after,
+.ps-solution::after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 16px;
+}
+
+.ps-problem::after {
+  background-color: rgba(194, 59, 81, 0.12);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c23b51' stroke-width='2.8' stroke-linecap='round'%3E%3Cpath d='M6 6l12 12M18 6 6 18'/%3E%3C/svg%3E");
+}
+
+.ps-solution::after {
+  background-color: var(--lime);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2320152f' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E");
+}
+
+/* Keep text clear of the corner badges. */
+.ps-problem .ps-label,
+.ps-solution .ps-label {
+  padding-right: 44px;
+}
+
+.ps-card h3 {
+  padding-right: 8px;
 }
